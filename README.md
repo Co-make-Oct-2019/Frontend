@@ -19,8 +19,8 @@ Front-End for Co-Make. Here will be listed details on project progress.
 
 ### TODOS:
 ---
-- Setup Redux
-- Setup custom axios instance.
+- Setup Redux for post
+- Setup Redux for comment
 
 ### Completed:
 ---
@@ -28,6 +28,14 @@ Front-End for Co-Make. Here will be listed details on project progress.
 
 - ~~Complete base tempalates for all components.~~
 
-- ~~Base Routes completed~~
+- ~~Base Routes completed.~~
 
-- ~~Setup PrivateRoute~~
+- ~~Setup PrivateRoute.~~
+
+- ~~Setup custom axios instance.~~
+
+- ~~Setup Redux for user.~~
+
+- ~~axiosWithAuth Created.~~
+
+- ~~Login Created.~~

@@ -11,7 +11,7 @@ import PrivateRoute from './PrivateRoute';
 // ? COMPONENTS
 import DashBoard from '../components/DashBoard/DashBoard';
 import Issues from '../components/Issues/Issues';
-import Login from '../components/Login/Login';
+import Login from '../components/User/Login';
 import Profile from '../components/Profile/Profile';
 
 // * HISTORY OBJ
@@ -22,6 +22,7 @@ const AppRouter = () => (
         <>
             <Switch>
                 <Route exact path="/" component={Login}/>
+                <Route path="/signup" component={Login}/>
                 <Route path="/dashboard" component={DashBoard}/>
                 <Route path="/profile" component={Profile}/>
                 <Route path="/issues" component={Issues}/>
