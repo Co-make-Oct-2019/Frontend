@@ -36,8 +36,8 @@ export const startLogin = (inputData) => {
         axiosWithAuth().post('/login', credentials)
             .then(res => {
                 if (!!res === true) {
-                    // dispatch(login(res.data))
                     console.log(res.data)
+                    dispatch(login(res.data))
                     res.data && localStorage.setItem('token', res.data.access_token)
                 }
             })

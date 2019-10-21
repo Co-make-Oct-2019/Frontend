@@ -19,7 +19,10 @@ export default (state = userDefaultState, action) => {
             console.log(LOGIN, action)
             return {
                 ...state,
-                ...action.payload
+                data_response: {
+                    ...action.payload,
+                },
+                isFetching: false
             }
         default:
             return state;
