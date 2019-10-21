@@ -1,11 +1,14 @@
 import React from 'react';
 
+// * STYLED COMPONENT IMPORT
+import style from './StyledComponrnts';
+
 const Login = () => {
 
     return (
-        <form>
+        <style.form>
             <h2>Login Component</h2>
-        </form>
+        </style.form>
     )
 }
 

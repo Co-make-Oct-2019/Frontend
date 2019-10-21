@@ -1,11 +1,14 @@
 import React from 'react';
 
+// * STYLED COMPONENT IMPORT
+import style from './StyleComponent';
+
 const DashBoard = () => {
 
     return (
-        <section>
+        <style.section>
             <h2>DashBoard Component</h2>
-        </section>
+        </style.section>
     )
 }
 

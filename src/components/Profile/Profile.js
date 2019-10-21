@@ -1,11 +1,14 @@
 import React from 'react';
 
+// * STYLED COMPONENT IMPORT
+import style from './StyledComponents';
+
 const Profile = () => {
 
     return (
-        <section>
+        <style.section>
             <h2>Profile Component</h2>
-        </section>
+        </style.section>
     )
 }
 
