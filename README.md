@@ -1,3 +1,5 @@
+# Current App Deployment: [Here](https://frontend.co-make.now.sh/)
+
 # About:
 ```
 Front-End for Co-Make. Here will be listed details on project progress.
@@ -26,3 +28,5 @@ Front-End for Co-Make. Here will be listed details on project progress.
 - ~~Wireframing project directories / component templates.~~
 
 - ~~Complete base tempalates for all components.~~
+
+- ~~Base Routes completed~~
