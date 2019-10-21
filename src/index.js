@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
+import AppRouter from './Routes/AppRouter';
 
 import configureStore from './Redux/store/configureStore'
 const store = configureStore();
 
 const jsx = (
     <Provider store={store}>
-        <App />
+        <AppRouter />
     </Provider>
 )
 
