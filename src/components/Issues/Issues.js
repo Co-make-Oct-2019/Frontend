@@ -1,14 +1,17 @@
 import React from 'react';
+import IssuesForm from './IssuesForm';
 
 // * STYLED COMPONENT IMPORT
-import style from './StyledComponents';
+ import styled from './StyledComponents';
 
 const Issues = () => {
 
     return (
-        <style.div>
+        <div>
             <h2>Issues Component</h2>
-        </style.div>
+            <IssuesForm/>
+        </div>
+
     )
 }
 
