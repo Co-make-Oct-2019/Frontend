@@ -42,8 +42,6 @@ export const startGetPosts = (inputData) => {
                 if (!!res === true && !!inputData === true) dispatch(get_post(res.data))
             })
             .catch(err => console.log(err))
-
-        // dispatch(create_post(inputData))
     }
 }
 

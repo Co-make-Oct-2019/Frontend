@@ -7,6 +7,7 @@ Front-End for Co-Make. Here will be listed details on project progress.
 
 ## Tech Stack:
 - [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
 - [Styled-Components](https://www.styled-components.com/)
 
 ### Getting Started:
@@ -19,8 +20,14 @@ Front-End for Co-Make. Here will be listed details on project progress.
 
 ### TODOS:
 ---
-- Setup Redux for post
+- Create form PUT for IssueCard
+- Create form DELETE for IssueCard
+- Main styling for Issues & components
+
+### STRETCH:
+---
 - Setup Redux for comment
+- Setup CRUD for comment
 
 ### Completed:
 ---
@@ -39,3 +46,5 @@ Front-End for Co-Make. Here will be listed details on project progress.
 - ~~axiosWithAuth Created.~~
 
 - ~~Login Created.~~
+
+- ~~- Setup Redux for post.~~
