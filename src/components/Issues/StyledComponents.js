@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
-const div = styled.div`
+const section = styled.section`
+    border: 1px solid black;
+`
+
+const card_div = styled.section`
     border: 1px solid black;
 `
 
 export default {
-    div    
+    card_div,
+    section    
 }
