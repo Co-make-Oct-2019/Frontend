@@ -1,3 +1,5 @@
+# Current App Deployment: [Here](https://frontend.co-make.now.sh/)
+
 # About:
 ```
 Front-End for Co-Make. Here will be listed details on project progress.
@@ -17,12 +19,23 @@ Front-End for Co-Make. Here will be listed details on project progress.
 
 ### TODOS:
 ---
-- Setup Redux
-- Setup PrivateRoute
-- Setup custom axios instance.
+- Setup Redux for post
+- Setup Redux for comment
 
 ### Completed:
 ---
 - ~~Wireframing project directories / component templates.~~
 
 - ~~Complete base tempalates for all components.~~
+
+- ~~Base Routes completed.~~
+
+- ~~Setup PrivateRoute.~~
+
+- ~~Setup custom axios instance.~~
+
+- ~~Setup Redux for user.~~
+
+- ~~axiosWithAuth Created.~~
+
+- ~~Login Created.~~

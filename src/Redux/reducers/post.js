@@ -1,7 +1,7 @@
 const postDefaultState = {
     title: undefined,
     location: undefined,
-    line1: undefined,
+    description: undefined,
     imageurl: undefined
 }
 
