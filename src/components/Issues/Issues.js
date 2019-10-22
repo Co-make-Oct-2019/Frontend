@@ -40,7 +40,7 @@ const Issues = (props) => {
 
             {
                 !!post.response_data === true && post.response_data.map((issue, key) => {
-                    return <IssuesCard  key={key} issue={issue} user={user}/>
+                    return <IssuesCard key={key} issue={issue} user={user}/>
                 })
             }
         </style.section>

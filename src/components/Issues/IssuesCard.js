@@ -26,9 +26,12 @@ const IssuesCard = ({ issue, user }) => {
                 <span>{issue.lastModifiedDate}</span>
             </article>
 
-            {/* // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
-             */}
-            {user.userid === issue.user.userid && (<Link to="/edit-issue">Edit</Link>)}
+            { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
+                user.userid === issue.user.userid && (<Link to={{
+                    pathname: "/edit-issue",
+                    issue: issue
+                }}>Edit</Link>)
+            }
         </style.card_div>
     )
 }

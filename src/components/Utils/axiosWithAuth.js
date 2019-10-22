@@ -8,7 +8,7 @@ const axiosWithAuth = () => {
     return !!token === true ? axios.create({
         baseURL: 'https://bw-co-make.herokuapp.com/',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
             'Authorization': `bearer ${token}`
         }
     }) : axios.create({

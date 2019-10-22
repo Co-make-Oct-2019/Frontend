@@ -6,13 +6,13 @@ import { startAuthenticate } from '../../Redux/actions/user';
 // * STYLED COMPONENT IMPORT
 import style from './StyledComponents';
 
-const IssuesForm = ({ 
+const IssuesForm = ({
     post,
     user,
     startCreatePost,
     startAuthenticate,
     history,
-    location 
+    location
 }) => {
 
     // TODO COMPLETE UPDATE FUNCTIONALITY
@@ -65,8 +65,12 @@ const IssuesForm = ({
                 placeholder="Img"
             />
 
-            <button>Submit</button>
-            
+            {   // ? IF THE PATH IS TRUE, THEN RENDER UPDATE / SUBMIT BUTTON
+                location.pathname === '/edit-issue' ?
+                    <button>Update</button> :
+                    <button>Submit</button>
+            }
+
             {   // ? IF THE PATH IS TRUE, THEN RENDER DELETE BUTTON
                 location.pathname === '/edit-issue' &&
                 <button>Delete</button>
