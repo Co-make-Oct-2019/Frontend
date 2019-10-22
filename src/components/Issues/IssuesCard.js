@@ -7,7 +7,7 @@ import style from './StyledComponents';
 const IssuesCard = ({ issue, user }) => {
 
     // ! LOG DATA
-    console.log(issue, user)
+    // console.log(issue, user)
 
     return (
         <style.card_div className={`issues-card__container`}>
@@ -27,9 +27,11 @@ const IssuesCard = ({ issue, user }) => {
             </article>
 
             { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
-                user.userid === issue.user.userid && (<Link to={{
+                user && user.userid === issue.user.userid && (<Link to={{
                     pathname: "/edit-issue",
-                    issue: issue
+                    state: {
+                        issue: issue
+                    }
                 }}>Edit</Link>)
             }
         </style.card_div>

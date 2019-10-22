@@ -31,7 +31,7 @@ const Issues = (props) => {
     }, [post])
 
     // ! LOG DATA
-    console.log(`ISSUES COMPONENT`, user)
+    // console.log(`ISSUES COMPONENT`, user)
 
     return (
         <style.section>

@@ -1,13 +1,12 @@
 import React from 'react';
 
-const IssuesForm_Input = ({ handleChange, issue }) => (
+const IssuesForm_Input = ({ handleChange }) => (
     <>
         <input
             onChange={(e) => handleChange(e)}
             name="title"
             type="text"
             placeholder="Title"
-            value={issue.title && issue.title}
             required
         />
         <input
@@ -15,7 +14,6 @@ const IssuesForm_Input = ({ handleChange, issue }) => (
             name="description"
             type="text"
             placeholder="Description"
-            value={issue.description && issue.description}
             required
         />
         <input
@@ -23,7 +21,6 @@ const IssuesForm_Input = ({ handleChange, issue }) => (
             name="location"
             type="text"
             placeholder="Location"
-            value={issue.location && issue.location}
             required
         />
         <input
@@ -31,7 +28,6 @@ const IssuesForm_Input = ({ handleChange, issue }) => (
             name="imageurl"
             type="text"
             placeholder="Img"
-            value={issue.imageurl && issue.imageurl}
         />
     </>
 )

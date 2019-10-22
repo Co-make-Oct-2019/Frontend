@@ -30,7 +30,9 @@ export const delete_post = (data) => ({
 // * LOGIC BELOW
 export const startCreatePost = (inputData) => {
     return dispatch => {
-        console.log('START CREATE POST', inputData)
+        
+        // ! LOG DATA
+        // console.log('START CREATE POST', inputData)
 
         if ( // ? IF MULTIPLE REQUIRED FIELDS IS RECIEVED, CREATE POST
             !!inputData === true &&
@@ -54,13 +56,19 @@ export const startGetPosts = (inputData) => {
             .then(res => {
                 if (!!res === true && !!inputData === true) dispatch(get_post(res.data))
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response))
     }
 }
 
 export const startUpdatePost = (inputData) => {
     return dispatch => {
-        dispatch(update_post(inputData))
+        
+        // ! LOG DATA
+        // console.log('START UPDATE POST', inputData)
+
+        axiosWithAuth().put(`/posts/post/${inputData.userpostid}`, inputData)
+        .then(res => dispatch(update_post(res.data)))
+        .catch(err =>  console.log(err.response))
     }
 }
 
