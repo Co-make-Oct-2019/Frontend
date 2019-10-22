@@ -6,7 +6,14 @@ import { startAuthenticate } from '../../Redux/actions/user';
 // * STYLED COMPONENT IMPORT
 import style from './StyledComponents';
 
-const IssuesForm = ({ post, user, startCreatePost, startAuthenticate }) => {
+const IssuesForm = ({ 
+    post,
+    user,
+    startCreatePost,
+    startAuthenticate,
+    history,
+    location 
+}) => {
 
     // TODO COMPLETE UPDATE FUNCTIONALITY
 
@@ -26,7 +33,7 @@ const IssuesForm = ({ post, user, startCreatePost, startAuthenticate }) => {
     }
 
     // ! LOG DATA
-    console.log(post, user)
+    console.log(post, user, history, location)
 
     return ( // * FORM FOR CREATING NEW ISSUES (POST)
         <style.form onSubmit={(e) => handleSubmit(e)}>
@@ -59,6 +66,11 @@ const IssuesForm = ({ post, user, startCreatePost, startAuthenticate }) => {
             />
 
             <button>Submit</button>
+            
+            {   // ? IF THE PATH IS TRUE, THEN RENDER DELETE BUTTON
+                location.pathname === '/edit-issue' &&
+                <button>Delete</button>
+            }
         </style.form>
     )
 }
