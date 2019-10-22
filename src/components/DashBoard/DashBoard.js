@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Issues from '../Issues/Issues.js';
+import Navigation from '../Navigation';
 
 // * STYLED COMPONENT IMPORT
 import style from './StyleComponent';
@@ -41,7 +42,9 @@ const DashBoard = () => {
     }
 
     return ( 
+        
         <style.section>
+            <Navigation/>
         <section>
             <form>
                 <style.input  type = 'text' onChange= {handleInputChange} value= {query} name='issues search' placeholder = 'search issues in your area'/>
