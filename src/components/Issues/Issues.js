@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startGetPosts } from '../../Redux/actions/post';
+import { startAuthenticate } from '../../Redux/actions/user';
 
 // * COMPONENT IMPORTS
 import IssuesCard from './IssuesCard';
@@ -12,18 +13,25 @@ import style from './StyledComponents';
 const Issues = (props) => {
 
     const { 
-        post
+        post,
+        user,
+        startAuthenticate,
+        startGetPosts
      } = props
 
     useEffect(() => {
         const token = localStorage.getItem('token');
 
         if (!!post.response_data === false) {
-            props.startGetPosts(!!token === true && token)
+            startGetPosts(!!token === true && token)
         }
 
-        console.log(`ISSUES COMPONENT`, props)
+        // * GRAB USER DATA (SELF)
+        startAuthenticate()
     }, [post])
+
+    // ! LOG DATA
+    console.log(`ISSUES COMPONENT`, user)
 
     return (
         <style.section>
@@ -32,21 +40,24 @@ const Issues = (props) => {
 
             {
                 !!post.response_data === true && post.response_data.map((issue, key) => {
-                    return <IssuesCard  key={key} issue={issue} />
+                    return <IssuesCard  key={key} issue={issue} user={user}/>
                 })
             }
         </style.section>
     )
 }
 
+// * REDUX
 const mapStateToProps = (state) => {
     return {
-        post: state.post
+        post: state.post,
+        user: state.user
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    startGetPosts: (data) => dispatch(startGetPosts(data))
+    startGetPosts: (data) => dispatch(startGetPosts(data)),
+    startAuthenticate: (data) => dispatch(startAuthenticate(data))
 })
 
 export default connect(

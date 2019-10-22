@@ -63,9 +63,12 @@ export const startCreateUser = (inputData) => {
 
 }
 
-export const startAuthentication = (inputData) => {
+export const startAuthenticate = (inputData) => {
     return dispatch => {
-        dispatch(authenticate(inputData))
+        // * RETRIEVE SELF
+        axiosWithAuth().get('users/getuserinfo')
+            .then(res => dispatch(authenticate(res && res.data)))
+            .catch(err => console.log(err))
     }
 }
 

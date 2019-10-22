@@ -24,6 +24,7 @@ const AppRouter = () => (
                 <Route exact path="/" component={Login}/>
                 <Route path="/signup" component={Login}/>
                 <PrivateRoute path="/new-issue" component={IssuseForm}/>
+                <PrivateRoute path="/edit-issue" component={IssuseForm}/>
                 <Route path="/dashboard" component={DashBoard}/>
                 <Route path="/profile" component={Profile}/>
                 <Route path="/issues" component={Issues}/>
