@@ -11,7 +11,7 @@ import style from './StyleComponent';
 // ======= DASHBOARD COMPONENT ======//
 // === PULLS IN POSTS FROM USER'S CURRENT LOCATION ==// 
 
-const DashBoard = ({ post }) => {
+const DashBoard = (props) => {
 
     const [posts, setPosts] = useState([]);
     const [query, setQuery] = useState('');
@@ -25,7 +25,7 @@ const DashBoard = ({ post }) => {
         }
 
         console.log(`ISSUES COMPONENT`, props)
-    }, [post])
+    }, [props.post])
 
 
     useEffect (() => {
