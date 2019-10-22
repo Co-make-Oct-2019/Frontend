@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startGetPosts } from '../../Redux/actions/post';
 
@@ -27,6 +28,7 @@ const Issues = (props) => {
     return (
         <style.section>
             <h2>Issues Component</h2>
+            <Link to="/new-issue">New Issue</Link>
 
             {
                 !!post.response_data === true && post.response_data.map((issue, key) => {
