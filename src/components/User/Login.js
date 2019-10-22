@@ -16,15 +16,15 @@ const Login = (props) => {
 
     const location = props.history.location.pathname;
     const history = props.history;
-    const token = localStorage.getItem('token');
 
     useEffect(() => {
-
-        // * IF ACCOUNT WAS JUST CREATED, REDIRECT
-        if (props.user.accountCreated === true) history.replace('/')
+        const token = localStorage.getItem('token');
 
         // * IF LOGGED IN (TOKEN EXIST), REDIRECT
         if (!!token === true) history.replace('/dashboard')
+
+        // * IF ACCOUNT WAS JUST CREATED, REDIRECT
+        if (props.user.accountCreated === true) history.replace('/')
 
         // ! LOG DATA
         console.log('LOGIN COMPONENT', props);
