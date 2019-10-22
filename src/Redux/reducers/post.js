@@ -1,5 +1,5 @@
 // * TYPES
-import { GET_POST } from '../actions/post';
+import { CREATE_POST, GET_POST } from '../actions/post';
 
 const postDefaultState = {
     title: undefined,
@@ -10,6 +10,12 @@ const postDefaultState = {
 
 export default (state = postDefaultState, action) => {
     switch(action.type) {
+        case CREATE_POST:
+            console.log(CREATE_POST, action)
+            return {
+                ...state,
+                ...action.payload
+            }
         case GET_POST:
             console.log(GET_POST, action)
             return {

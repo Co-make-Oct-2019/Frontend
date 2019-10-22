@@ -30,7 +30,20 @@ export const delete_post = (data) => ({
 // * LOGIC BELOW
 export const startCreatePost = (inputData) => {
     return dispatch => {
-        dispatch(create_post(inputData))
+        console.log('START CREATE POST', inputData)
+
+        if ( // ? IF MULTIPLE REQUIRED FIELDS IS RECIEVED, CREATE POST
+            !!inputData === true &&
+            !!inputData.title === true &&
+            !!inputData.location === true &&
+            !!inputData.description === true
+        ) {
+            return axiosWithAuth().post('/posts/post', inputData)
+                .then(res => console.log(res))
+                .catch(err => console.log(err.response))
+        } else if ( // ? IF A SINGLE FIELD IS RECIEVED, UPDATE
+            !!inputData && Object.entries(inputData).length === 1
+        ) dispatch(create_post(inputData))
     }
 }
 
