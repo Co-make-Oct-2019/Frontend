@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Issues from '../Issues/Issues.js';
+import IssuesCard from '../Issues/IssuesCard.js';
 import Navigation from '../Navigation';
 
 // * STYLED COMPONENT IMPORT
@@ -11,23 +11,21 @@ import style from './StyleComponent';
 // ======= DASHBOARD COMPONENT ======//
 // === PULLS IN POSTS FROM USER'S CURRENT LOCATION ==// 
 
-const DashBoard = () => {
+const DashBoard = ({ post }) => {
 
     const [posts, setPosts] = useState([]);
     const [query, setQuery] = useState('');
     const [search, setSearch] = useState([]);
 
     useEffect(() => {
-        axios
-        .get('https://bw-co-make.herokuapp.com/posts/currentlocation?credentials=%7B%7D&details=%7B%7D&principal=%7B%7D')
-        .then (response => {
-            console.log(response);
-            setPosts(response);
-        })
-        .catch (error => {
-            console.log('The data was not returned', error);
-        })
-    }, [posts])
+        const token = localStorage.getItem('token');
+
+        if (!!post.response_data === false) {
+            props.startGetPosts(!!token === true && token)
+        }
+
+        console.log(`ISSUES COMPONENT`, props)
+    }, [post])
 
 
     useEffect (() => {
@@ -53,10 +51,10 @@ const DashBoard = () => {
         </section>
 
        <div>
-        {posts.map( issue => {
+        {posts.map( (issue, key) => {
           
             return (
-                <Issues key = {issue.id } title = {issue.title} detail = {issue.detail} timestamp = {issue.timestamp} />
+                <IssuesCard key={key} issue={issue} />
             )
             })}
        </div>
@@ -64,4 +62,17 @@ const DashBoard = () => {
     )
 }
 
-export default DashBoard
+const mapStateToProps = (state) => {
+    return {
+        post: state.post
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    startGetPosts: (data) => dispatch(startGetPosts(data))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DashBoard)
