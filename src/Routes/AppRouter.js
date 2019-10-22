@@ -5,12 +5,12 @@ import { createBrowserHistory } from 'history'
 // * IMPORTS (COMPONENTS / IMPORTS)
 
 // ? ROUTES
-// TODO: CREATE PRIVATE ROUTES
 import PrivateRoute from './PrivateRoute';
 
 // ? COMPONENTS
 import DashBoard from '../components/DashBoard/DashBoard';
 import Issues from '../components/Issues/Issues';
+import IssuseForm from '../components/Issues/IssuesForm';
 import Login from '../components/User/Login';
 import Profile from '../components/Profile/Profile';
 
@@ -23,6 +23,7 @@ const AppRouter = () => (
             <Switch>
                 <Route exact path="/" component={Login}/>
                 <Route path="/signup" component={Login}/>
+                <PrivateRoute path="/new-issue" component={IssuseForm}/>
                 <Route path="/dashboard" component={DashBoard}/>
                 <Route path="/profile" component={Profile}/>
                 <Route path="/issues" component={Issues}/>

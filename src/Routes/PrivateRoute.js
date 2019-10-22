@@ -3,8 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} component={(props) => (
-        // TODO: REPLACE LOGIC WHEN TOKEN SETUP IS COMPLETE
-        (!!localStorage.getItem('token')) === false ? (
+        !!localStorage.getItem('token') === true ? (
             <>
                 <Component {...props}/>
             </>
