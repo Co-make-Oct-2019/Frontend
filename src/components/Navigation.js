@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import ProfileCard from './Profile/ProfileCard';
 
 const Navigation = (props) => {
   return (

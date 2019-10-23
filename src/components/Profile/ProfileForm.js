@@ -4,7 +4,13 @@ import axios from 'axios';
 import * as Yup from 'yup';
 
 
-// need to require an email address and make sure emails don't match: https://jaredpalmer.com/formik/docs/api/field#validate
+// TODOS // 
+// Add required email address field with validation - https://jaredpalmer.com/formik/docs/api/field#validate
+// Remove image input field until backend functionality is added
+// Make sure User Edit is posting to backend
+// Pull from Google city names API, map to location dropdown options 
+// Improve form validations
+// Styling
 
 function ProfileForm ({errors, touched}) {
 
@@ -68,7 +74,7 @@ function ProfileForm ({errors, touched}) {
         const userData = {data: "Hello World!"};
 
         axios 
-            .post('http: post thingss', userData)
+            .post('users/user/profile/edit', userData)
             .then(response => {
                 console.log(response.data);
             })

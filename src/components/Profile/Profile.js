@@ -1,12 +1,19 @@
+// * HOOKS
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navigation from '../Navigation';
 // * STYLED COMPONENT IMPORT
 import style from './StyledComponents';
+// * APP COMPONENT IMPORT
 import ProfileCard from './ProfileCard';
 import FormikProfileForm from './ProfileForm';
 import axiosWithAuth from '../Utils/axiosWithAuth';
-import DashBoard from '../DashBoard/DashBoard';
+
+
+// TODOS // 
+// Debug MYPOSTS data request
+// Get a profile example that has a User photo
+// Toggle the ProfileForm with an OnClick for the Edit button
+// Styling
 
 
 const Profile = (props) => {
