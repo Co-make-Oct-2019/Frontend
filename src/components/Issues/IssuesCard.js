@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // * STYLED COMPONENT IMPORT
 import style from './StyledComponents';
 
-const IssuesCard = ({ issue, user }) => {
+const IssuesCard = ({ issue, user, handleVote }) => {
 
     // ! LOG DATA
     console.log(issue, user)
@@ -25,6 +25,9 @@ const IssuesCard = ({ issue, user }) => {
                     <span>{issue.lastModifiedBy}</span>
                     <span>{issue.lastModifiedDate}</span>
                 </article>
+
+                <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button>
+                <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>
 
             { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
                 user && user.userid === issue.user.userid && (<Link to={{

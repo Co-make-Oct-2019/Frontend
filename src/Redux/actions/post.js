@@ -4,6 +4,7 @@ import axiosWithAuth from '../../components/Utils/axiosWithAuth';
 export const CREATE_POST = 'CREATE_POST';
 export const GET_POST = 'GET_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const UPDATE_POST_VOTE = 'UPDATE_POST_VOTE';
 export const DELETE_POST = 'DELETE_POST';
 
 // * PAYLOAD
@@ -19,6 +20,11 @@ export const get_post = (data) => ({
 
 export const update_post = (data) => ({
     type: UPDATE_POST,
+    payload: data
+})
+
+export const update_postVote = (data) => ({
+    type: UPDATE_POST_VOTE,
     payload: data
 })
 
@@ -60,6 +66,17 @@ export const startUpdatePost = (inputData) => {
         axiosWithAuth().put(`/posts/post/${inputData.userpostid}`, inputData)
             .then(res => dispatch(update_post(res.data)))
             .catch(err => console.log(err.response))
+    }
+}
+
+export const startVoteUpdate = (inputData, type) => {
+    return dispatch => {
+
+        // ! LOG DATA
+        // console.log(inputData, type)
+
+        // * UPDATE CURRENT LIST OF DATA, WITH NEW OBJ FOR VOTING
+        dispatch(update_postVote(inputData))
     }
 }
 

@@ -1,5 +1,5 @@
 // * TYPES
-import { CREATE_POST, GET_POST, UPDATE_POST } from '../actions/post';
+import { CREATE_POST, GET_POST, UPDATE_POST, UPDATE_POST_VOTE } from '../actions/post';
 
 const postDefaultState = {
     title: undefined,
@@ -9,7 +9,7 @@ const postDefaultState = {
 }
 
 export default (state = postDefaultState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case CREATE_POST:
             console.log(CREATE_POST, action)
             return {
@@ -27,6 +27,17 @@ export default (state = postDefaultState, action) => {
             return {
                 post_template: state,
                 updated: action.payload
+            }
+        case UPDATE_POST_VOTE:
+            console.log(UPDATE_POST_VOTE, action)
+            return {
+                post_template: state,
+                response_data: [
+                    ...state.response_data.filter(
+                        issue => issue.userpostid !== action.payload.userpostid
+                    ),
+                    action.payload
+                ]
             }
         default:
             return state;
