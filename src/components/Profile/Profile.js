@@ -10,8 +10,8 @@ import axiosWithAuth from '../Utils/axiosWithAuth';
 
 
 // TODOS // 
-// Debug MYPOSTS data request
-// Get a profile example that has a User photo
+// Debug MYPOSTS data request = Use the initial get request, post data is nested
+// Get a profile example that has a User photo  = fixed
 // Toggle the ProfileForm with an OnClick for the Edit button
 // Styling
 
@@ -31,24 +31,21 @@ const Profile = (props) => {
         })
     }, [])
 
-    useEffect(() => {
-        axiosWithAuth().get('/posts/myposts')
-        .then(response => {
-            console.log(response.data);
-            return response && setMyPosts(response.data)
-        })
-    }, [])
-
+    
 
     return (
+
         <style.section>
+       
             <h2>Profile Component</h2>
             <Link to = '/' >DashBoard</Link>
             <Link to = '/ProfileForm'>Edit</Link>
-            <ProfileCard profile={profile}/>
+            {profile && <ProfileCard profile={profile}/>}
             <button><Link to = './IssuesForm'>Post</Link></button>
             <div >My Issues</div>
             <div>My First Priority</div>
+      
+        
             <FormikProfileForm/>
             
         </style.section>
