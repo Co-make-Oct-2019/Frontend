@@ -17,7 +17,7 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
         history.replace(`/issue/${issue.userpostid}`)
     }
 
-    const path = url => history.location.pathname.includes(url)
+    const path = url => history && history.location.pathname.includes(url)
 
     return (
         <style.card_div className={`issues-card__container`}>
