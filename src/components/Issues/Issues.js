@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startGetPosts, startVoteUpdate } from '../../Redux/actions/post';
@@ -13,6 +13,8 @@ import SearchIssue from './SearchIssues';
 import style from './StyledComponents';
 
 const Issues = (props) => {
+
+    const [searched, setSearched] = useState([])
 
     const {
         history,
@@ -31,7 +33,9 @@ const Issues = (props) => {
 
         // * GRAB USER DATA (SELF)
         startAuthenticate()
-    }, [])
+
+        console.log(searched)
+    }, [searched])
 
     // ! LOG DATA
     console.log(`ISSUES COMPONENT`, user, location, match, history)
@@ -52,32 +56,40 @@ const Issues = (props) => {
             })
             .catch(err => console.log(err.response))
 
-        console.log('ISSUES COMPONENT, HANDLE VOTE FUNCTION', text, voteType, id)
+        // ! LOG DATA
+        console.log(
+            'ISSUES COMPONENT, HANDLE VOTE FUNCTION',
+            text,
+            voteType,
+            id
+        )
     }
 
-    return (
-        <style.section>
-            <div className={`issues__headers`}>
-                <h2>Issues Component</h2>
-                
-                <div className={`issues__options`}>
-                    <SearchIssue />
-                    <Link to="/new-issue">New Issue</Link>
+    // ? IF CHOSEN ID EXIST IN URL, FIND AND DISPLAY A ISSUE CARD === ISSUE_ID 
+    return !!post.response_data === true && match.url.includes('/issue/') ? post.response_data.filter(issue => issue.userpostid == match.params.id)
+        .map((item, key) => <IssuesCard key={key} issue={item} user={user} handleVote={handleVote} history={history} />) :
+        (
+            <style.section>
+                <div className={`issues__headers`}>
+                    <h2>Issues Component</h2>
+
+                    <div className={`issues__options`}>
+                        <SearchIssue setSearched={setSearched} issues={post.response_data && post.response_data} />
+                        <Link to="/new-issue">New Issue</Link>
+                    </div>
                 </div>
-            </div>
 
-            {   // ? IF CHOSEN ID EXIST IN URL, FIND AND DISPLAY A ISSUE CARD === ISSUE_ID
-                !!post.response_data === true && match.url.includes('/issue/') && post.response_data.filter(issue => issue.userpostid == match.params.id)
-                    .map((item, key) => <IssuesCard key={key} issue={item} user={user} handleVote={handleVote} history={history} />)
-            }
-
-            {   // ? LIST ALL ISSUES IF URL IS '/issues'
-                !!post.response_data === true && match.url.includes('/issues') && post.response_data.map(
-                    (issue, key) => <IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} history={history} />
-                )
-            }
-        </style.section>
-    )
+                {   // ? IF SEARCHED RESULTS EXIST, RENDER FIRST
+                    searched.length > 0 && searched.map(
+                        (issue, key) => <IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} history={history} />
+                    ) ||
+                    // ? LIST ALL ISSUES IF URL IS '/issues'
+                    !!post.response_data === true && match.url.includes('/issues') && post.response_data.map(
+                        (issue, key) => <IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} history={history} />
+                    )
+                }
+            </style.section>
+        )
 }
 
 // * REDUX
