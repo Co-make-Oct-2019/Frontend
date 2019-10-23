@@ -16,7 +16,7 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
 
     return (
         <style.card_div className={`issues-card__container`}>
-            <div className={`issue-card__content`} onClick={(e) => forward(e)}>
+            <div className={`issue-card__content`} onClick={(e) => history.location.pathname.includes('/issues') && forward(e)}>
                 <article>
                     <h3>{issue.title}</h3>
                     <img src={`${issue.imageurl}`} alt={`${issue.description}`} />
@@ -41,7 +41,7 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                     }}>Edit</Link>)
                 }
             </div>
-            
+
             <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button>
             <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>
         </style.card_div>
