@@ -26,9 +26,7 @@ export default (state = postDefaultState, action) => {
             console.log(UPDATE_POST, action)
             return {
                 post_template: state,
-                response_data: {
-                    post: action.payload
-                }
+                updated: action.payload
             }
         default:
             return state;

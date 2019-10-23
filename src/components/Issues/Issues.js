@@ -20,15 +20,12 @@ const Issues = (props) => {
      } = props
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-
-        if (!!post.response_data === false) {
-            startGetPosts(!!token === true && token)
-        }
+        // * RETREIVE ALL ISSUES
+        startGetPosts()
 
         // * GRAB USER DATA (SELF)
         startAuthenticate()
-    }, [post])
+    }, [])
 
     // ! LOG DATA
     // console.log(`ISSUES COMPONENT`, user)
@@ -37,6 +34,10 @@ const Issues = (props) => {
         <style.section>
             <h2>Issues Component</h2>
             <Link to="/new-issue">New Issue</Link>
+
+            {
+                !!post.response_data === true && console.log(post.response_data)
+            }
 
             {
                 !!post.response_data === true && post.response_data.map((issue, key) => {

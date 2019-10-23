@@ -30,20 +30,11 @@ export const delete_post = (data) => ({
 // * LOGIC BELOW
 export const startCreatePost = (inputData) => {
     return dispatch => {
-        
+
         // ! LOG DATA
         // console.log('START CREATE POST', inputData)
 
-        if ( // ? IF MULTIPLE REQUIRED FIELDS IS RECIEVED, CREATE POST
-            !!inputData === true &&
-            !!inputData.title === true &&
-            !!inputData.location === true &&
-            !!inputData.description === true
-        ) {
-            return axiosWithAuth().post('/posts/post', inputData)
-                .then(res => console.log(res))
-                .catch(err => console.log(err.response))
-        } else if ( // ? IF A SINGLE FIELD IS RECIEVED, UPDATE
+        if ( // ? IF A SINGLE FIELD IS RECIEVED, UPDATE
             !!inputData && Object.entries(inputData).length === 1
         ) dispatch(create_post(inputData))
     }
@@ -54,7 +45,7 @@ export const startGetPosts = (inputData) => {
         // * RETRIEVE ALL POSTS
         axiosWithAuth().get('/posts/allposts')
             .then(res => {
-                if (!!res === true && !!inputData === true) dispatch(get_post(res.data))
+                if (!!res === true) dispatch(get_post(res.data))
             })
             .catch(err => console.log(err.response))
     }
@@ -62,18 +53,36 @@ export const startGetPosts = (inputData) => {
 
 export const startUpdatePost = (inputData) => {
     return dispatch => {
-        
+
         // ! LOG DATA
         // console.log('START UPDATE POST', inputData)
 
         axiosWithAuth().put(`/posts/post/${inputData.userpostid}`, inputData)
-        .then(res => dispatch(update_post(res.data)))
-        .catch(err =>  console.log(err.response))
+            .then(res => dispatch(update_post(res.data)))
+            .catch(err => console.log(err.response))
     }
 }
 
 export const startDeletePost = (inputData) => {
     return dispatch => {
-        dispatch(delete_post(inputData))
+
+        // ! LOG DATA
+        // console.log('START DELETE POST', inputData)
+
+        // * RETRIEVE ALL POSTS
+        const update = () => axiosWithAuth().get('/posts/allposts')
+
+        // * DELETE SELETED POST
+        axiosWithAuth().delete(`/posts/post/${inputData.userpostid}`)
+            .then(res => {
+                console.log(res)
+                update()
+                    .then(res => {
+                        console.log(res)
+                        if (!!res === true) dispatch(get_post(res.data))
+                    })
+                    .catch(err => console.log(err.response))
+            })
+            .catch(err => console.log(err.response))
     }
 }
