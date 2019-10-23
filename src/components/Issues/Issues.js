@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startGetPosts } from '../../Redux/actions/post';
+import { startAuthenticate } from '../../Redux/actions/user';
 
 // * COMPONENT IMPORTS
 import IssuesCard from './IssuesCard';
@@ -11,42 +12,57 @@ import style from './StyledComponents';
 
 const Issues = (props) => {
 
-    const { 
-        post
-     } = props
+    const {
+        history,
+        location,
+        match,
+        post,
+        user,
+        startAuthenticate,
+        startGetPosts
+    } = props
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        // * RETREIVE ALL ISSUES
+        startGetPosts()
 
-        if (!!post.response_data === false) {
-            props.startGetPosts(!!token === true && token)
-        }
+        // * GRAB USER DATA (SELF)
+        startAuthenticate()
+    }, [])
 
-        console.log(`ISSUES COMPONENT`, props)
-    }, [post])
+    // ! LOG DATA
+    console.log(`ISSUES COMPONENT`, user, location, match, history)
 
     return (
         <style.section>
             <h2>Issues Component</h2>
             <Link to="/new-issue">New Issue</Link>
 
-            {
-                !!post.response_data === true && post.response_data.map((issue, key) => {
-                    return <IssuesCard  key={key} issue={issue} />
-                })
+            {   // ? IF CHOSEN ID EXIST IN URL, FIND AND DISPLAY A ISSUE CARD === ISSUE_ID
+                !!post.response_data === true && match.url.includes('/issue/') && post.response_data.filter(issue => issue.userpostid == match.params.id)
+                .map(item => <IssuesCard issue={item} user={user}/>)
+            }
+
+            {   // ? LIST ALL ISSUES IF URL IS '/issues'
+                !!post.response_data === true && match.url.includes('/issues') && post.response_data.map(
+                    (issue, key) => <Link to={`/issue/${issue.userpostid}`}><IssuesCard key={key} issue={issue} user={user} /></Link>
+                )
             }
         </style.section>
     )
 }
 
+// * REDUX
 const mapStateToProps = (state) => {
     return {
-        post: state.post
+        post: state.post,
+        user: state.user
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    startGetPosts: (data) => dispatch(startGetPosts(data))
+    startGetPosts: (data) => dispatch(startGetPosts(data)),
+    startAuthenticate: (data) => dispatch(startAuthenticate(data))
 })
 
 export default connect(

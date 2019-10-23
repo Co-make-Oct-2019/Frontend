@@ -28,7 +28,7 @@ export const upload_img = (data) => ({
 export const startLogin = (inputData) => {
 
     // ! LOG DATA
-    console.log('START LOGIN', inputData);
+    // console.log('START LOGIN', inputData);
 
     const credentials = `grant_type=password&username=${inputData.username}&password=${inputData.password}`
 
@@ -41,14 +41,15 @@ export const startLogin = (inputData) => {
                     res.data && localStorage.setItem('token', res.data.access_token)
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response))
     }
 }
 
 export const startCreateUser = (inputData) => {
     return dispatch => {
+
         // ! LOG DATA
-        console.log('START CREATE USER', inputData)
+        // console.log('START CREATE USER', inputData)
 
         axios.post('https://bw-co-make.herokuapp.com/newuser/createnewuser', {
             username: inputData.username,
@@ -58,14 +59,17 @@ export const startCreateUser = (inputData) => {
             .then(res => {
                 if (res.status === 201) dispatch(authenticate({ accountCreated: true }))
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response))
     }
 
 }
 
-export const startAuthentication = (inputData) => {
+export const startAuthenticate = (inputData) => {
     return dispatch => {
-        dispatch(authenticate(inputData))
+        // * RETRIEVE SELF
+        axiosWithAuth().get('users/getuserinfo')
+            .then(res => dispatch(authenticate(res && res.data)))
+            .catch(err => console.log(err.response))
     }
 }
 

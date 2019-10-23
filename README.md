@@ -31,6 +31,8 @@ Front-End for Co-Make. Here will be listed details on project progress.
 
 ### Completed:
 ---
+<Details>
+
 - ~~Wireframing project directories / component templates.~~
 
 - ~~Complete base tempalates for all components.~~
@@ -48,3 +50,5 @@ Front-End for Co-Make. Here will be listed details on project progress.
 - ~~Login Created.~~
 
 - ~~- Setup Redux for post.~~
+
+</Details>
