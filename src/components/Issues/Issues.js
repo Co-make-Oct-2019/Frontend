@@ -7,6 +7,7 @@ import axiosWithAuth from '../Utils/axiosWithAuth';
 
 // * COMPONENT IMPORTS
 import IssuesCard from './IssuesCard';
+import SearchIssue from './SearchIssues';
 
 // * STYLED COMPONENT IMPORT
 import style from './StyledComponents';
@@ -47,35 +48,32 @@ const Issues = (props) => {
 
         axiosWithAuth().put(`/posts/post/${voteType}/${id}`)
             .then(res => {
-                // // ? URL INCLUDES '/issues'
-                // match.url.includes('/issues') &&
-                //     history.go('/issues')
-
-                // // ? URL INCLUDES '/issue/'
-                // match.url.includes('/issue/') &&
-                //     history.go(`/issue/${id}`)
-                console.log(startVoteUpdate)
-
                 return startVoteUpdate(res.data, voteType)
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response))
 
-        console.log(text, voteType, id)
+        console.log('ISSUES COMPONENT, HANDLE VOTE FUNCTION', text, voteType, id)
     }
 
     return (
         <style.section>
-            <h2>Issues Component</h2>
-            <Link to="/new-issue">New Issue</Link>
+            <div className={`issues__headers`}>
+                <h2>Issues Component</h2>
+                
+                <div className={`issues__options`}>
+                    <SearchIssue />
+                    <Link to="/new-issue">New Issue</Link>
+                </div>
+            </div>
 
             {   // ? IF CHOSEN ID EXIST IN URL, FIND AND DISPLAY A ISSUE CARD === ISSUE_ID
                 !!post.response_data === true && match.url.includes('/issue/') && post.response_data.filter(issue => issue.userpostid == match.params.id)
-                    .map((item, key) => <IssuesCard key={key} issue={item} user={user} handleVote={handleVote} />)
+                    .map((item, key) => <IssuesCard key={key} issue={item} user={user} handleVote={handleVote} history={history} />)
             }
 
             {   // ? LIST ALL ISSUES IF URL IS '/issues'
                 !!post.response_data === true && match.url.includes('/issues') && post.response_data.map(
-                    (issue, key) => <Link to={`/issue/${issue.userpostid}`}><IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} /></Link>
+                    (issue, key) => <IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} history={history} />
                 )
             }
         </style.section>

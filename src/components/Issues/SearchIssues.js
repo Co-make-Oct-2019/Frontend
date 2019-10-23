@@ -6,9 +6,10 @@ import style from './StyledComponents';
 const SearchIssues = () => {
 
     return (
-        <style.div>
-            <h2>SearchIssues Component</h2>
-        </style.div>
+        <style.formSearch>
+            <label>Search</label>
+            <input type="text"/>
+        </style.formSearch>
     )
 }
 

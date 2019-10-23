@@ -4,13 +4,19 @@ import { Link } from 'react-router-dom';
 // * STYLED COMPONENT IMPORT
 import style from './StyledComponents';
 
-const IssuesCard = ({ issue, user, handleVote }) => {
+const IssuesCard = ({ issue, user, handleVote, history }) => {
 
     // ! LOG DATA
-    console.log(issue, user)
+    // console.log(issue, user)
+
+    const forward = (e) => {
+        e.preventDefault()
+        history.replace(`/issue/${issue.userpostid}`)
+    }
 
     return (
         <style.card_div className={`issues-card__container`}>
+            <div className={`issue-card__content`} onClick={(e) => forward(e)}>
                 <article>
                     <h3>{issue.title}</h3>
                     <img src={`${issue.imageurl}`} alt={`${issue.description}`} />
@@ -20,23 +26,24 @@ const IssuesCard = ({ issue, user, handleVote }) => {
                     <p> Id:{issue.userpostid} </p>
                     <p> Voted: {JSON.stringify(issue.voted)} </p>
                     <p> Created by: {issue.createdBy} </p>
-    
+
                     <span>{issue.createdDate}</span>
                     <span>{issue.lastModifiedBy}</span>
                     <span>{issue.lastModifiedDate}</span>
                 </article>
 
-                <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button>
-                <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>
-
-            { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
-                user && user.userid === issue.user.userid && (<Link to={{
-                    pathname: "/edit-issue",
-                    state: {
-                        issue: issue
-                    }
-                }}>Edit</Link>)
-            }
+                { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
+                    user && user.userid === issue.user.userid && (<Link to={{
+                        pathname: "/edit-issue",
+                        state: {
+                            issue: issue
+                        }
+                    }}>Edit</Link>)
+                }
+            </div>
+            
+            <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button>
+            <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>
         </style.card_div>
     )
 }
