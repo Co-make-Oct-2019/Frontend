@@ -10,8 +10,9 @@ const ProfileCard = (props) => {
 
     return (
         // <style.card_div className={`profile-card__container`}>
-          <div>  <h3>{props.name}</h3>
-        {props.imageurl && <img src={`${ props.imageurl }`} alt={`${props.description}`}/>}
+          <div>  
+            <h3>Name: {props.name}</h3>
+            <p>Photo:{props.imageurl && <img src={`${ props.imageurl }`} alt={`${props.description}`}/>}</p>
             <p> Description: {props.description} </p>
             <p> Location: {props.location} </p> 
             </div>

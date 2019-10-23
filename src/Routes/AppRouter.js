@@ -13,6 +13,7 @@ import Issues from '../components/Issues/Issues';
 import IssuseForm from '../components/Issues/IssuesForm';
 import Login from '../components/User/Login';
 import Profile from '../components/Profile/Profile';
+import ProfileForm from '../components/Profile/ProfileForm';
 
 // * HISTORY OBJ
 const history = createBrowserHistory();
@@ -26,6 +27,7 @@ const AppRouter = () => (
                 <PrivateRoute path="/new-issue" component={IssuseForm}/>
                 <Route path="/dashboard" component={DashBoard}/>
                 <Route path="/profile" component={Profile}/>
+                <Route path="/profile-form" component={ProfileForm}/>
                 <Route path="/issues" component={Issues}/>
             </Switch>
         </>

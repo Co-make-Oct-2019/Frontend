@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import IssuesCard from '../Issues/IssuesCard.js';
-import Navigation from '../Navigation';
 import { startGetPosts } from '../../Redux/actions/post';
-
-// * STYLED COMPONENT IMPORT
+import { connect } from 'react-redux';
+import Navigation from '../Navigation';
+import ProfileCard from '../Profile/ProfileCard';
+import IssuesCard from '../Issues/IssuesCard.js';
 import style from './StyleComponent';
 
 
-// ======= DASHBOARD COMPONENT ======//
-// === PULLS IN POSTS FROM USER'S CURRENT LOCATION ==// 
+// ======= DASHBOARD COMPONENT ======// 
 
 const DashBoard = (props) => {
 
@@ -32,12 +29,14 @@ const DashBoard = (props) => {
         
         <style.section>
             <Navigation/>
-            
+            <ProfileCard/>
        <div>
         {props.post.response_data && props.post.response_data.map( (issue, key) => {
-          
+
             return (
-                <IssuesCard key={key} issue={issue} />
+                <div>
+                <IssuesCard key={key} issue={issue}/>
+                </div>
             )
             })}
        </div>
