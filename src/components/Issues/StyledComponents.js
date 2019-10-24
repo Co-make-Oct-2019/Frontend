@@ -19,6 +19,18 @@ const section = styled.section`
         align-items: center;
 
         width: 50%;
+
+        & > a {
+            font-weight: 600;
+            height: 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 0.3rem;
+            border-bottom: 0.6px solid grey;
+            border-left: 0.5px solid grey;
+            text-align: center;
+            background-color: black;    
+            padding: 0 1rem;
+        }
     }
 `
 
@@ -212,10 +224,22 @@ const form = styled.form`
 
 const formSearch = styled.form`
     display: inline-block;
-    border: 1px solid blue;
 
     & > button:hover {
         cursor: pointer;
+    }
+
+    & > label {
+        font-weight: 600;
+        color: mediumseagreen;
+        height: 1.5rem;
+        margin: 0 0.5rem;
+        border-radius: 0.3rem;
+        border-bottom: 0.6px solid grey;
+        border-left: 0.5px solid grey;
+        text-align: center;
+        background-color: black;
+        padding: 0.15rem 1rem;
     }
 
     & > input {
