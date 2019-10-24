@@ -56,10 +56,10 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                     }}>Edit</Link>)
                 }
             </div>
-            {issue.voted===false ? <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button>:
-        <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>}
-            
-            
+            {!!issue.voted === false ? <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button> :
+                <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>}
+
+
 
             {path('/issue/') &&
                 <div className="issue-comments__container">

@@ -85,7 +85,7 @@ const IssuesForm = ({
 
                 {   // ? IF THE PATH IS TRUE, THEN RENDER UPDATE DATA
                     location.pathname === '/edit-issue' &&
-                    <IssuesCard issue={!!response ? response : location.state.issue} />
+                    <IssuesCard issue={!!response ? response : (location && location.state.issue)} />
                 }
 
                 {/* // * INPUT FIELDS
