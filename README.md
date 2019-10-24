@@ -25,7 +25,6 @@ Front-End for Co-Make. Here will be listed details on project progress.
 ### STRETCH:
 ---
 - Setup Redux for comment
-- Add comments
 - Setup CRUD for comment
 
 ### Completed:
@@ -57,5 +56,9 @@ Front-End for Co-Make. Here will be listed details on project progress.
 - ~~Completed SearchIssues functionality~~
 
 - ~~Refactor for rendering on Issues~~
+
+- ~~Token Expiration Check~~
+
+- ~~Add comments~~ (STRETCH)
 
 </Details>

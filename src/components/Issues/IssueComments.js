@@ -3,7 +3,8 @@ import moment from 'moment';
 
 const IssueComments = ({ issue }) => {
 
-    console.log('ISSUE COMMENTS COMPONENT', issue)
+    // ! LOG DATA
+    // console.log('ISSUE COMMENTS COMPONENT', issue)
 
     return (
         <div className={`comment__container`}>

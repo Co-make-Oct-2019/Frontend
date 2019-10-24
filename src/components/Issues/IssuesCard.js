@@ -10,14 +10,14 @@ import style from './StyledComponents';
 const IssuesCard = ({ issue, user, handleVote, history }) => {
 
     // ! LOG DATA
-    console.log('ISSUE CARD COMPONENT', issue, user)
+    // console.log('ISSUE CARD COMPONENT', issue, user)
 
     const forward = (e) => {
         e.preventDefault()
         history.replace(`/issue/${issue.userpostid}`)
     }
 
-    const path = url => history.location.pathname.includes(url)
+    const path = url => history && history.location.pathname.includes(url)
 
     return (
         <style.card_div className={`issues-card__container`}>

@@ -24,10 +24,12 @@ const IssuesForm = ({
 
     // * ISSUE OBJ
     const issue = post.updated ? post.updated
-    : location.state ? location.state.issue 
-    : undefined;
+        : location.state ? location.state.issue
+            : undefined;
+
     // * NEW RESPONSE
     const response = post.updated && post.updated
+
     // * PATHNAME DECIDES TYPE OF SUBMISSION
     const submitType = location.pathname === '/edit-issue' ? 'edit' : 'create'
 
@@ -57,17 +59,17 @@ const IssuesForm = ({
     const handleSubmit = (type, e) => {
         e.preventDefault(e)
 
-            if ( // ? IF MULTIPLE REQUIRED FIELDS IS RECIEVED, CREATE POST
-                type === 'create' &&
-                !!post === true &&
-                !!post.title === true &&
-                !!post.location === true &&
-                !!post.description === true
-            ) {
-                return axiosWithAuth().post('/posts/post', post)
-                    .then(res => history.replace('/issues'))
-                    .catch(err => console.log(err.response))
-            } 
+        if ( // ? IF MULTIPLE REQUIRED FIELDS IS RECIEVED, CREATE POST
+            type === 'create' &&
+            !!post === true &&
+            !!post.title === true &&
+            !!post.location === true &&
+            !!post.description === true
+        ) {
+            return axiosWithAuth().post('/posts/post', post)
+                .then(res => history.replace('/issues'))
+                .catch(err => console.log(err.response.status))
+        }
 
         // ? IF EDIT
         if (type === 'edit') post &&
@@ -75,7 +77,7 @@ const IssuesForm = ({
     }
 
     // ! LOG DATA
-    console.log(post, user, history, location, issue, response)
+    // console.log(post, user, history, location, issue, response)
 
     return ( // * FORM FOR CREATING NEW ISSUES (POST)
         <>
