@@ -11,17 +11,26 @@ import style from './StyledComponents';
 const IssuesCard = ({ issue, user, handleVote, history }) => {
 
     // ! LOG DATA
+    // console.log(user, issue)
 
     const forward = (e) => {
         e.preventDefault()
         history.replace(`/issue/${issue.userpostid}`)
     }
 
+    // * PATH CHECKER
     const path = url => history && history.location.pathname.includes(url)
+    
+    // * LOGIC FOR WHICH VOTING BUTTON APPEARS
+    const votingBtn = () => !!issue.voted === false ?
+        <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button> :
+        !!issue.voted === true ?
+            <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button> :
+            undefined
 
     return (
         <style.card_div>
-            <div className={`issue-card__content`} onClick={(e) => path('/issues') && forward(e)}>
+            <div className={`issue-card__content`} onClick={(e) => path('/dashboard') || path('/issues') && forward(e)}>
                 <article>
                     <h3>{issue.title}</h3>
 
@@ -47,6 +56,10 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
 
                 </article>
 
+                {   // ? IF PATHS ARE TRUE FOR EITHER, RENDER BUTTONS
+                    (path('issue') || path('/issues')) && votingBtn()
+                }
+
                 { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
                     user && user.userid === issue.user.userid && (<Link to={{
                         pathname: "/edit-issue",
@@ -56,12 +69,9 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                     }}>Edit</Link>)
                 }
             </div>
-            {!!issue.voted === false ? <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button> :
-                <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>}
 
-
-
-            {path('/issue/') &&
+            {
+                path('/issue/') &&
                 <div className="issue-comments__container">
                     <h3>Comments: </h3>
 
