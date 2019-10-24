@@ -3,26 +3,31 @@ import styled from 'styled-components';
 
 const section = styled.section`
     border: 1px solid black;
+    padding: 20px;
+    margin: 50px;
 `
 const navbar = styled.div`
-    display: flex;
-    flex-direction: row;
+    
     padding: 1rem;
-    width: 100%;
     background: black;
     color: white;
     font-size: 20px;
     text-decoration: none;
 `
 
-const Link = ({}) => (
-    <a>Test</a>
-  );
+const card = styled.div`
+  border-raidus: 20px;
+  margin: 50px;
+  `;
   
-  const StyledLink = styled(Link)`
-    color: white;
-    font-weight: bold;
-    font-display: ubuntu;
+const Link = styled.a`
+  color: white;
+  font-display: ubuntu;
+  `;
+  
+  const setLink = styled(Link)`
+  color: white;
+  font-display: ubuntu;
   `;
 
   const Profile = styled.div`
@@ -33,7 +38,7 @@ const Link = ({}) => (
   `;
     
 export default {
-    section , navbar , Link , StyledLink , Profile
+    section , navbar ,  Profile,  card
 }
 
 // @ubuntu: 'Ubuntu', sans-serif;

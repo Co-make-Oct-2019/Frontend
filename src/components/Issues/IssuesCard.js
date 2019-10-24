@@ -7,7 +7,7 @@ import style from './StyledComponents';
 const IssuesCard = ({ issue, user }) => {
 
     // ! LOG DATA
-    console.log(issue, user)
+    // console.log(issue, user)
 
     return (
         <style.card_div className={`issues-card__container`}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import StyledLink from  './StyleComponent';
+import style from 'styled-components'
 
 
 const Navigation = (props) => {
@@ -8,7 +8,7 @@ const Navigation = (props) => {
     <div>
       <div className="Nav">
         <div>
-          <Link to="/profile">Profile</Link>
+          <Link className='navlink' to="/profile">Profile</Link>
         </div>
         <div>
           <Link to="/tools">Tools</Link>

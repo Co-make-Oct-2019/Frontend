@@ -17,28 +17,26 @@ function ProfileForm ({errors, touched}) {
     return(
     
             <Form>
-                <div>
-                    {touched.username && errors.username && 
-                    <p>{errors.username}</p>}
-                        <Field name= 'username' type='text' placeholder='Username'/>
-                </div>
-                <div>
-                    {/* {touched.image && errors.image && 
-                    <p>{image.username}</p>} */}
-                        <Field  name= 'image' type='image' placeholder='Change photo'/>
-                </div>
+                
                 <div>
                     {/* going to map through city names and put them in a dropdown list - https://coderanch.com/t/696183/languages/Populating-React-dropdown-list-data */}
                     {touched.location && errors.location && 
                     <p>{errors.location}</p>}
+                        <label>Location
                         <Field component='select' name= 'location' placeholder='What city are you in?'>
-                            <option value = 'list'></option>
+                            <option value='Boston'>Boston</option>
+                            <option value='Chicago'>Chicago</option>
+                            <option value='Miami'>Miami</option>
+                            <option value='Portland'>Portland</option>
                         </Field>
+                        </label>
                 </div>
                 <div>
                     {touched.description && errors.description && 
                     <p>{errors.description}</p>}
+                    <label>Introduction
                         <Field name='description' type='text' placeholder='Introduce yourself!'/>
+                    </label>
                 </div>
 
                 <input type='submit'/>
@@ -49,7 +47,6 @@ function ProfileForm ({errors, touched}) {
     const FormikProfileForm = withFormik({
         mapPropsToValues({username, image, location, description}) {
             return {
-                username: username || '',
                 image: image || '',
                 location: location || '',
                 description: description || '',
@@ -61,12 +58,12 @@ function ProfileForm ({errors, touched}) {
                 .min(4, 'Username must be at least 4 characters')
                 .required('Username is required'),
             image: Yup.string()
-                .min(500, 'image must be at least 500px'),
+                .max(300, 'Image must be less than 300px'),
              location: Yup.string()
                 .required('Location must be selected'),
             description: Yup.string()
                 .max(25)
-                .required()
+                .required('Description is required.')
         }),
             handleSubmit(values, {resetForm, setErrors, setSubmitting}) {
                 console.log(values);

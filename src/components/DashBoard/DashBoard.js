@@ -11,7 +11,7 @@ import IssuesCard from '../Issues/IssuesCard.js';
 import style from './StyleComponent';
 
 // TODOS //Make sure sign-in is working and user Dashboard is displaying - done! //
-// Add a View All Posts Button
+
 //Styling 
 
 const DashBoard = (props) => {
@@ -32,17 +32,18 @@ const DashBoard = (props) => {
 
         <style.section>
 
-            <style.navbar><Navigation/></style.navbar>
-           
-            <div>
+            <style.navbar>
+                <Navigation/>
+                </style.navbar>
+        
+            <div className='card'>
             {props.post.response_data 
-            && props.post.response_data.map( (issue, key, description, location, imageurl, createdBy, createdDate) => {
+            && props.post.response_data.map( (issue, key) => {
 
                 return (
                     <div>
                     <IssuesCard key={key} issue={issue} />
                     </div>
-                   
                 )
                 })}
             </div>
