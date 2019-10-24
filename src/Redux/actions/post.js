@@ -57,6 +57,18 @@ export const startGetPosts = (inputData) => {
     }
 }
 
+export const startGetPostsFromCurrentLocation = (inputData) => {
+    return dispatch => {
+        // * RETRIEVE ALL POSTS FROM CURRENT LOCATION
+        // * THIS SHOULD BE FOR THE DASHBOARD
+        axiosWithAuth().get('/posts/currentlocation')
+            .then(res => {
+                if (!!res === true) dispatch(get_post(res.data))
+            })
+            // .catch(err => console.log(err.response.status))
+    }
+}
+
 export const startUpdatePost = (inputData) => {
     return dispatch => {
 
@@ -76,7 +88,18 @@ export const startVoteUpdate = () => {
         // console.log(inputData, type)
 
         // * UPDATE CURRENT LIST OF DATA, WITH NEW OBJ FOR VOTING
-        dispatch(startGetPosts())
+        dispatch(startGetPosts());
+    }
+}
+
+export const startVoteUpdateForDashboard = (inputData, type) => {
+    return dispatch => {
+
+        // ! LOG DATA
+        // console.log(inputData, type)
+
+        // * UPDATE CURRENT LIST OF DATA, WITH NEW OBJ FOR VOTING
+        dispatch(startGetPostsFromCurrentLocation());
     }
 }
 
