@@ -53,7 +53,7 @@ const Issues = (props) => {
 
         axiosWithAuth().put(`/posts/post/${voteType}/${id}`)
             .then(res => {
-                return startVoteUpdate(res.data, voteType)
+                return startVoteUpdate()
             })
             .catch(err => console.log(err.response))
 

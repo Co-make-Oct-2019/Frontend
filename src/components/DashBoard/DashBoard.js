@@ -1,13 +1,14 @@
 
 // * HOOKS
 import React, { useState, useEffect } from 'react';
-import { startGetPosts } from '../../Redux/actions/post';
+import { startGetPostsFromCurrentLocation, startVoteUpdateForDashboard } from '../../Redux/actions/post';
+import { startAuthenticate } from '../../Redux/actions/user';
+
 import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
 import Navigation from './Navigation';
 import IssuesCard from '../Issues/IssuesCard.js';
-// * STYLE COMPONENT IMPORT
-import styled from 'styled-components';
+import axiosWithAuth from '../Utils/axiosWithAuth';
 
 // TODOS //Make sure sign-in is working and user Dashboard is displaying - done! //
 
@@ -36,14 +37,41 @@ const IssueCard = styled.div`
 
 
 const DashBoard = (props) => {
-
+    console.log(props);
     const [post, setPost] = useState([]);
     const [profile, setProfile] = useState();
+
+    const {
+        history,
+        location,
+        match,
+        // post,
+        user,
+        startAuthenticate,
+        // startGetPosts,
+        startVoteUpdateForDashboard
+    } = props
+
+    const handleVote = (e, id) => {
+        e.preventDefault();
+
+        // ? DATA VARIRABLES
+        const text = e.target.textContent.toLowerCase()
+        const voteType = text === 'up vote' ? 'increment'
+            : text === 'down vote' ? 'decrement'
+                : console.log('ERROR VOTING')
+
+        axiosWithAuth().put(`/posts/post/${voteType}/${id}`)
+            .then(res => {
+                return startVoteUpdateForDashboard(res.data, voteType)
+            })
+            .catch(err => console.log(err.response))
+    }
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!!post.response_data === false) {
-            props.startGetPosts(!!token === true && token)
+            props.startGetPostsFromCurrentLocation(!!token === true && token)
         }
     }, [])
 
@@ -66,12 +94,15 @@ const DashBoard = (props) => {
 
         const mapStateToProps = (state) => {
             return {
-                post: state.post
+                post: state.post,
+                user: state.user
             }
         }
 
         const mapDispatchToProps = (dispatch) => ({
-            startGetPosts: (data) => dispatch(startGetPosts(data))
+            startGetPostsFromCurrentLocation: (data) => dispatch(startGetPostsFromCurrentLocation(data)),
+            startVoteUpdateForDashboard: (data, type) => dispatch(startVoteUpdateForDashboard(data, type)),
+            startAuthenticate: (data) => dispatch(startAuthenticate(data)),
         })
 
 export default connect(
