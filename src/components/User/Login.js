@@ -70,22 +70,20 @@ const Login = (props) => {
             </style.form>
 
         )
-        : location === '/'
-            ? (
-                <style.form onSubmit={(e) => handleSubmit('login', e)}>
-                    <h2>Login</h2>
-                    <input onChange={(e) => handleChange(e)} name="username" placeholder="username here" type="text" />
-                    <input onChange={(e) => handleChange(e)} name="password" placeholder="password here" type="password" />
+        :
+        (
+            <style.form onSubmit={(e) => handleSubmit('login', e)}>
+                <h2>Login</h2>
+                <input onChange={(e) => handleChange(e)} name="username" placeholder="username here" type="text" />
+                <input onChange={(e) => handleChange(e)} name="password" placeholder="password here" type="password" />
 
-                    <button>Submit</button>
-                    <Link to="/signup">
-                        <button>Sign Up</button>
-                    </Link>
-                </style.form>
+                <button>Submit</button>
+                <Link to="/signup">
+                    <button>Sign Up</button>
+                </Link>
+            </style.form>
 
-            )
-            :
-            <Redirect to="/" />
+        )
 }
 
 // * REDUX SETUP
