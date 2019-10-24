@@ -4,7 +4,6 @@ import style from './StyledComponents';
 // * APP COMPONENT IMPORT
 
  // TODOS // 
-  // Add the User reputation information to this card - Read the data asshole 
 
 
 const ProfileCard = (props) => {

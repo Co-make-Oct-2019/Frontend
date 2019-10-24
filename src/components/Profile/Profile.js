@@ -1,6 +1,6 @@
 // * HOOKS
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , Route , NavLink } from 'react-router-dom';
 // * STYLED COMPONENT IMPORT
 import style from './StyledComponents';
 // * APP COMPONENT IMPORT
@@ -9,10 +9,8 @@ import FormikProfileForm from './ProfileForm';
 import axiosWithAuth from '../Utils/axiosWithAuth';
 
 
-// TODOS //  // Get a profile example that has a User photo  = fixed // Debug MYPOSTS data request = Use the initial get request, post data is nested
+// TODOS //  *component-header *NavLink *h2 *profile-card *button *main-section *info-section
 
-
-// Toggle the ProfileForm with an OnClick for the Edit button
 // Add classNames to elements
 // Styling
 
@@ -20,34 +18,31 @@ import axiosWithAuth from '../Utils/axiosWithAuth';
 const Profile = (user) => {
     const [profile, setProfile] = useState();
 
-console.log(user);
-    useEffect(() => {
-        axiosWithAuth().get('/users/getuserinfo')
-        .then(response => {
-            // console.log(response);
-            return response && setProfile(response.data);
-        })
-        .catch(error => {
-            console.log("The data was not returned", error);
-        })
+    console.log(user);
+        useEffect(() => {
+            axiosWithAuth().get('/users/getuserinfo')
+            .then(response => {
+                // console.log(response);
+                return response && setProfile(response.data);
+            })
+            .catch(error => {
+                console.log("The data was not returned", error);
+            })
     }, [])
-
+ 
     
-
     return (
 
         <style.section>
-       
-            <h2>Profile Component</h2>
-            <Link to = '/' >DashBoard</Link>
-            <Link to = '/ProfileForm'>Edit</Link>
-           {profile && <ProfileCard profile={profile}/>}
-            <button><Link to = '/new-issue'>Post an Issue</Link></button>
 
-            
-            <div>My First Priority</div>
-        
-            <FormikProfileForm/>
+            <h2>Profile Component</h2>
+            <NavLink to = '/' >DashBoard</NavLink>
+            <NavLink to='./ProfileForm'> Edit </NavLink>
+                <div className='profile-card'>
+                {profile && <ProfileCard profile={profile}/>}
+                </div>
+            <button><Link to = '/new-issue'>Post an Issue</Link></button>
+            <Route path="./ProfileForm" render={() => <FormikProfileForm />}/>
             
         </style.section>
     )

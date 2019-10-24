@@ -5,7 +5,7 @@ import { startGetPosts } from '../../Redux/actions/post';
 import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
 import Navigation from './Navigation';
-import ProfileCard from '../Profile/ProfileCard';
+import ProfileCard from '../Profile/ProfileCard.js';
 import IssuesCard from '../Issues/IssuesCard.js';
 // * STYLE COMPONENT IMPORT
 import style from './StyleComponent';
@@ -17,6 +17,7 @@ import style from './StyleComponent';
 const DashBoard = (props) => {
 
     const [post, setPost] = useState([]);
+    const [profile, setProfile] = useState();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -34,6 +35,7 @@ const DashBoard = (props) => {
 
             <style.navbar>
                 <Navigation/>
+                {/* <ProfileCard profile={profile}/> */}
                 </style.navbar>
         
             <div className='card'>

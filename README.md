@@ -20,13 +20,12 @@ Front-End for Co-Make. Here will be listed details on project progress.
 
 ### TODOS:
 ---
-- Create form PUT for IssueCard
-- Create form DELETE for IssueCard
 - Main styling for Issues & components
 
 ### STRETCH:
 ---
 - Setup Redux for comment
+- Add comments
 - Setup CRUD for comment
 
 ### Completed:
@@ -50,5 +49,13 @@ Front-End for Co-Make. Here will be listed details on project progress.
 - ~~Login Created.~~
 
 - ~~- Setup Redux for post.~~
+
+- ~~Create form PUT for IssueCard~~
+
+- ~~Create form DELETE for IssueCard~~
+
+- ~~Completed SearchIssues functionality~~
+
+- ~~Refactor for rendering on Issues~~
 
 </Details>
