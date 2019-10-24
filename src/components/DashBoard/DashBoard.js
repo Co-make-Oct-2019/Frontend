@@ -1,7 +1,7 @@
 
 // * HOOKS
 import React, { useState, useEffect } from 'react';
-import { startGetPosts } from '../../Redux/actions/post';
+import { startGetPostsFromCurrentLocation } from '../../Redux/actions/post';
 import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
 import Navigation from './Navigation';
@@ -23,7 +23,7 @@ const DashBoard = (props) => {
         const token = localStorage.getItem('token');
 
         if (!!post.response_data === false) {
-            props.startGetPosts(!!token === true && token)
+            props.startGetPostsFromCurrentLocation(!!token === true && token)
         }
     }, [])
 
@@ -60,7 +60,7 @@ const DashBoard = (props) => {
         }
 
         const mapDispatchToProps = (dispatch) => ({
-            startGetPosts: (data) => dispatch(startGetPosts(data))
+            startGetPostsFromCurrentLocation: (data) => dispatch(startGetPostsFromCurrentLocation(data))
         })
 
 export default connect(
