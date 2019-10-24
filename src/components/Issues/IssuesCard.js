@@ -10,7 +10,7 @@ import style from './StyledComponents';
 const IssuesCard = ({ issue, user, handleVote, history }) => {
 
     // ! LOG DATA
-    console.log('ISSUE CARD COMPONENT', issue, user)
+    // console.log('ISSUE CARD COMPONENT', issue, user)
 
     const forward = (e) => {
         e.preventDefault()

@@ -27,7 +27,7 @@ const Login = (props) => {
         if (props.user.accountCreated === true) history.replace('/')
 
         // ! LOG DATA
-        console.log('LOGIN COMPONENT', props);
+        // console.log('LOGIN COMPONENT', props);
 
     }, [props.user])
 
