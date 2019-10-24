@@ -59,45 +59,45 @@ const DashBoard = (props) => {
 
     console.log(props)
 
-    return ( 
+    return (
 
         <style.section>
 
             <style.navbar>
-                <Navigation/>
+                <Navigation />
                 {/* <ProfileCard profile={profile}/> */}
-                </style.navbar>
-        
+            </style.navbar>
+
             <div className='card'>
 
 
 
-            {props.post.response_data 
-            && props.post.response_data.map( (issue, key) => {
+                {props.post.response_data
+                    && props.post.response_data.map((issue, key) => {
 
-                return (
-                    <div>
-                    <IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} history={history} />
-                    </div>
-                )
-                })}
+                        return (
+                            <div>
+                                <IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} history={history} />
+                            </div>
+                        )
+                    })}
             </div>
-       </style.section>
+        </style.section>
     )
 }
 
-        const mapStateToProps = (state) => {
-            return {
-                post: state.post,
-                user: state.user
-            }
-        }
+const mapStateToProps = (state) => {
+    return {
+        post: state.post,
+        user: state.user
+    }
+}
 
-        const mapDispatchToProps = (dispatch) => ({
-            startGetPostsFromCurrentLocation: (data) => dispatch(startGetPostsFromCurrentLocation(data)),
-            startVoteUpdateForDashboard: (data, type) => dispatch(startVoteUpdateForDashboard(data, type)),
-            startAuthenticate: (data) => dispatch(startAuthenticate(data)),
-        })
+const mapDispatchToProps = (dispatch) => ({
+    startGetPostsFromCurrentLocation: (data) => dispatch(startGetPostsFromCurrentLocation(data)),
+    startVoteUpdateForDashboard: (data, type) => dispatch(startVoteUpdateForDashboard(data, type)),
+    startAuthenticate: (data) => dispatch(startAuthenticate(data)),
+})
 
 export default connect(
     mapStateToProps,

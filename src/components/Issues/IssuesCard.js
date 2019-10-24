@@ -57,7 +57,7 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                 </article>
 
                 {   // ? IF PATHS ARE TRUE FOR EITHER, RENDER BUTTONS
-                    (path('issue') || path('/issues')) && votingBtn()
+                    (path('issue') || path('/issues') || path('/dashboard')) && votingBtn()
                 }
 
                 { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
