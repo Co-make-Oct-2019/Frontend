@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
 import Navigation from './Navigation';
 import IssuesCard from '../Issues/IssuesCard.js';
+
+// * STYLE IMPORTS
+import styled from 'styled-imports';
+
 import axiosWithAuth from '../Utils/axiosWithAuth';
 
 // TODOS //Make sure sign-in is working and user Dashboard is displaying - done! //
