@@ -19,10 +19,7 @@ import Escalate from '../components/DashBoard/Escalate';
 // * HISTORY OBJ
 const history = createBrowserHistory();
 
-
 const AppRouter = () => {
-
-
 
     return (
         <Router history={history}>
