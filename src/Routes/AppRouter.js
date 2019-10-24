@@ -20,15 +20,18 @@ const history = createBrowserHistory();
 
 const AppRouter = () => {
 
-    // * CHECK CURRENT TOKEN IF EXPIRED.
-    axiosWithAuth().get('/users/getuserinfo')
+    // * TOKEN
+    const token = localStorage.getItem('token')
+
+    // * CHECK CURRENT TOKEN IF EXPIRED.g
+    !!token && axiosWithAuth().get('/users/getuserinfo')
         .then(res => console.log(`APP ROUTER AXIOS CALL`, res))
         .catch(err => {
             const status = err.response.status
 
             // ? IF A STORAGE SAVED DATA OF 'token' EXIST, DELETE IT & REDIRECT
             if (status === 401) {
-                !!localStorage.getItem('token') &&
+                !!token &&
                     localStorage.removeItem('token')
 
                 alert(`CALL STATUS ${status}, WE'RE REDIRECTING TO LOGIN TO RECEIVE NEW TOKEN. IF ISSUES STILL PERSIST, CONTACT Bao / Krishan.`)
