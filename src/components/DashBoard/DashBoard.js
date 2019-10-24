@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
 import Navigation from './Navigation';
 import IssuesCard from '../Issues/IssuesCard.js';
+import ProfileCard from '../Profile/ProfileCard';
+
 // * STYLE COMPONENT IMPORT
 import styled from 'styled-components';
 
@@ -14,25 +16,37 @@ import styled from 'styled-components';
 //Styling 
 
 const PageBox = styled.div`
-    padding: 30px;
+    padding: 80px;
 `
-
-const Navit = styled.div`   
-
+const IssueBox = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    `
+const Navit = styled.div`  
     background-color: white;
     box-shadow: 3px 3px 3px black;
-    height: 100px;
+    height: 50px;
     border-radius: 10px;
     `
-
+const Right = styled.div`
+    display: flex;
+    margin-left: 120px;
+    ` 
 const IssueCard = styled.div`
     background-color: black;
     border-radius: 20px;
-    item-align: center;
+    align: center;
     padding: 40px;
     color: white;
-    margin: 30px;
+    margin: 20px;
+    width: 100px;
 `
+const Row = styled.div`
+            display: flex;
+            flex-direction: row;
+            margin: 30px;
+            borer: 1px solid black;
+            `
 
 
 const DashBoard = (props) => {
@@ -49,8 +63,16 @@ const DashBoard = (props) => {
 
     return ( 
         <PageBox>
-            <Navit> <Navigation/> </Navit>
-            <section>
+            
+            <Navit> 
+                <Row>
+                <h1>DashBoard</h1>
+                <Right>
+                <Navigation/>
+                </Right>
+                </Row>
+             </Navit>
+            <IssueBox>
                 {props.post.response_data 
                 && props.post.response_data.map( (issue, description,key) => {
                     return (
@@ -59,7 +81,7 @@ const DashBoard = (props) => {
                         </IssueCard>
                     )
                     })}
-            </section>
+            </IssueBox>
        </PageBox>
     )
 }

@@ -16,13 +16,12 @@ import styled from 'styled-components';
 // Styling
 
     const Navit = styled.div`   
-
+        margin: 0 auto;
         background-color: white;
         box-shadow: 3px 10px 3px grey;
-        height: 100%;
-        width: 80%;
+        width: 90%;
         border-radius: 10px;
-        padding: 5%;
+        padding: 20px;
         `
     const StyledLink = styled(Link)`
         color: #3CB371;
@@ -63,8 +62,10 @@ const Profile = (user) => {
     
     return (
         <>
-        <Navit>
+        <Navit className='profile-card'>
+        
         <h1>Profile </h1>
+        <Navit>
         <Row>
            <StyledLink to = '/' >DashBoard</StyledLink>
            <StyledLink to = '/tools' >Tools</StyledLink>
@@ -80,7 +81,7 @@ const Profile = (user) => {
 
         
 
-        <Navit className='profile-card'>
+        
             {profile && <ProfileCard profile={profile}/>}
             <Row>
             
