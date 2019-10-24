@@ -81,27 +81,29 @@ const IssuesForm = ({
 
     return ( // * FORM FOR CREATING NEW ISSUES (POST)
         <>
-            <style.form onSubmit={(e) => handleSubmit(submitType, e)}>
+            {   // ? IF THE PATH IS TRUE, THEN RENDER UPDATE DATA
+                location.pathname === '/edit-issue' &&
+                <IssuesCard issue={!!response ? response : (location && location.state.issue)} />
+            }
 
-                {   // ? IF THE PATH IS TRUE, THEN RENDER UPDATE DATA
-                    location.pathname === '/edit-issue' &&
-                    <IssuesCard issue={!!response ? response : (location && location.state.issue)} />
-                }
+            <style.form onSubmit={(e) => handleSubmit(submitType, e)}>
 
                 {/* // * INPUT FIELDS
                  */} <IssuesForm_Input handleChange={handleChange} />
 
-                {   // ? IF THE PATH IS TRUE, THEN RENDER UPDATE / SUBMIT BUTTON
-                    location.pathname === '/edit-issue' ?
-                        <button>Update</button> :
-                        <button>Submit</button>
-                }
+                <div className={`issue-form__btn`}>
+                    {   // ? IF THE PATH IS TRUE, THEN RENDER UPDATE / SUBMIT BUTTON
+                        location.pathname === '/edit-issue' ?
+                            <button>Update</button> :
+                            <button>Submit</button>
+                    }
+    
+                    {   // ? IF THE PATH IS TRUE, THEN RENDER DELETE BUTTON
+                        location.pathname === '/edit-issue' &&
+                        <button onClick={(e) => handleDelete(e)}>Delete</button>
+                    }
+                </div>
             </style.form>
-
-            {   // ? IF THE PATH IS TRUE, THEN RENDER DELETE BUTTON
-                location.pathname === '/edit-issue' &&
-                <button onClick={(e) => handleDelete(e)}>Delete</button>
-            }
         </>
     )
 }
