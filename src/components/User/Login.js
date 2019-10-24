@@ -21,7 +21,7 @@ const Login = (props) => {
         const token = localStorage.getItem('token');
 
         // * IF LOGGED IN (TOKEN EXIST), REDIRECT
-        if (!!token === true) history.replace('/dashboard')
+        if (!!token === true) history.replace('/issues')
 
         // * IF ACCOUNT WAS JUST CREATED, REDIRECT
         if (props.user.accountCreated === true) history.replace('/')
