@@ -37,6 +37,11 @@ const card_div = styled.div`
                 max-height: 300px;
                 max-width: 300px;
             }
+            & .issue-card__issue {
+                // * STANDARD HEIGHT X WIDTH ON BACKEND                
+                max-height: 300px;
+                max-width: 300px;
+            }
         }
     }
 
