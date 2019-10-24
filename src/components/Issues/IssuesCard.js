@@ -19,11 +19,12 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
     const path = url => history && history.location.pathname.includes(url)
 
     return (
-        <style.card_div className={`issues-card__container`}>
+        <style.card_div>
             <div className={`issue-card__content`} onClick={(e) => path('/issues') && forward(e)}>
                 <article>
+                    <h3>{issue.title}</h3>
+
                     <div className={`issue-card__issue`}>
-                        <h3>{issue.title}</h3>
                         <img src={`${issue.imageurl}`} alt={`${issue.description}`} />
                         <p> Upvotes: {issue.count} </p>
                         <p> Description: {issue.description} </p>
