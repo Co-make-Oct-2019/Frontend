@@ -88,7 +88,20 @@ export const startVoteUpdate = (inputData, type) => {
         // console.log(inputData, type)
 
         // * UPDATE CURRENT LIST OF DATA, WITH NEW OBJ FOR VOTING
-        dispatch(update_postVote(inputData))
+        // dispatch(update_postVote(inputData))
+        dispatch(startGetPosts());
+    }
+}
+
+export const startVoteUpdateForDashboard = (inputData, type) => {
+    return dispatch => {
+
+        // ! LOG DATA
+        // console.log(inputData, type)
+
+        // * UPDATE CURRENT LIST OF DATA, WITH NEW OBJ FOR VOTING
+        // dispatch(update_postVote(inputData))
+        dispatch(startGetPostsFromCurrentLocation());
     }
 }
 

@@ -28,9 +28,9 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                         <p> Upvotes: {issue.count} </p>
                         <p> Description: {issue.description} </p>
                         <p> Location: {issue.location} </p>
-                        <p> Id:{issue.userpostid} </p>
-                        <p> Voted: {JSON.stringify(issue.voted)} </p>
-                        <p> Created by: {issue.createdBy} </p>
+                        {/* <p> Id:{issue.userpostid} </p> */}
+                        {/* <p> Voted: {JSON.stringify(issue.voted)} </p> */}
+                        <p> Created by: {issue.user.username} </p>
 
                         <span>{issue.createdDate}</span>
                         <span>{issue.lastModifiedBy}</span>
@@ -48,9 +48,10 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                     }}>Edit</Link>)
                 }
             </div>
-
-            <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button>
-            <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>
+            {issue.voted===false ? <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button>:
+        <button onClick={(e) => handleVote(e, issue.userpostid)}>Down vote</button>}
+            
+            
 
             { path('/issue/') &&
                 <div className="issue-comments__container">
