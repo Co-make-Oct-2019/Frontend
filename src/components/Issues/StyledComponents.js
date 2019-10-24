@@ -29,6 +29,7 @@ const card_div = styled.div`
     }
 
     & .issue-card__content {
+
         & > article {
             font-size: 1.5rem;
 
@@ -37,10 +38,18 @@ const card_div = styled.div`
                 max-height: 300px;
                 max-width: 300px;
             }
+
             & .issue-card__issue {
-                // * STANDARD HEIGHT X WIDTH ON BACKEND                
-                max-height: 300px;
-                max-width: 300px;
+                display: flex;
+                flex-flow: row nowrap;
+
+                & .issue-card__info {
+                    display: flex;
+                    flex-flow: column nowrap;
+
+                    max-width: 100%;
+                    padding-left: 1rem;
+                }
             }
         }
     }
