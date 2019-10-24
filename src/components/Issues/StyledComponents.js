@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const section = styled.section`
     border: 1px solid black;
+    background-color: mediumseagreen;
 
     & .issues__headers {
         display: flex;
@@ -22,13 +23,60 @@ const section = styled.section`
 `
 
 const card_div = styled.div`
-    border: 1px solid black;
+    border: 1px solid mediumseagreen;
+    margin: 1rem 0;
 
     & .issue-card__content:hover {
         cursor: pointer;
     }
 
     & .issue-card__content {
+
+        & > article > .issue-card__top-panel {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid mediumseagreen;
+            background-color: #54565A;
+            padding: 0.5rem 0;
+
+            & h3 {
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            & .top-panel__btns {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 25%;
+
+                & > button {
+                    width: 50%;
+                    font-size: 1.3rem;
+                    height: 1.5rem;
+                    margin: 0 0.5rem;
+                    border-radius: 0.3rem;
+                    border-bottom: 0.6px solid grey;
+                    border-left: 0.5px solid grey;
+                    text-align: center;
+                }
+
+                & > a {
+                    font-size: 1.3rem;
+                    height: 1.5rem;
+                    margin: 0 0.5rem;
+                    border-radius: 0.3rem;
+                    border-bottom: 0.6px solid grey;
+                    border-left: 0.5px solid grey;
+                    text-align: center;
+                    background-color: white;
+                    padding: 0 1rem;
+                    color: black;
+                }
+            }
+        }
 
         & > article {
             font-size: 1.5rem;
@@ -47,7 +95,10 @@ const card_div = styled.div`
                     display: flex;
                     flex-flow: column nowrap;
 
-                    max-width: 100%;
+                    width: 100%;
+                    color: white;
+                    weight: 600;
+                    background-color: grey;
                     padding-left: 1rem;
                 }
             }
@@ -151,10 +202,10 @@ const form = styled.form`
             height: 1.5rem;
             width: 75%;
             margin: 0 0.5rem;
-            background-color: mediumseagreen;
             border-radius: 0.3rem;
             border-bottom: 0.6px solid #D3D3D3;
             border-left: 0.5px solid #D3D3D3;
+            background-color: mediumseagreen;
         }
     }
 `

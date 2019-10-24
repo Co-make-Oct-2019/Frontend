@@ -20,7 +20,7 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
 
     // * PATH CHECKER
     const path = url => history && history.location.pathname.includes(url)
-    
+
     // * LOGIC FOR WHICH VOTING BUTTON APPEARS
     const votingBtn = () => !!issue.voted === false ?
         <button onClick={(e) => handleVote(e, issue.userpostid)}>Up vote</button> :
@@ -32,7 +32,24 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
         <style.card_div>
             <div className={`issue-card__content`}>
                 <article>
-                    <h3 onClick={(e) => path('/dashboard') || path('/issues') && forward(e)}>{issue.title}</h3>
+                    <div className={`issue-card__top-panel`}>
+                        <h3 onClick={(e) => path('/dashboard') || path('/issues') && forward(e)}>{issue.title}</h3>
+    
+                        <div className={`top-panel__btns`}>
+                            {   // ? IF PATHS ARE TRUE FOR EITHER, RENDER BUTTONS
+                                (path('issue') || path('/issues') || path('/dashboard')) && votingBtn()
+                            }
+        
+                            { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
+                                user && user.userid === issue.user.userid && (<Link to={{
+                                    pathname: "/edit-issue",
+                                    state: {
+                                        issue: issue
+                                    }
+                                }}>Edit</Link>)
+                            }
+                        </div>
+                    </div>
 
                     <div className={`issue-card__issue`}>
 
@@ -55,19 +72,6 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                     </div>
 
                 </article>
-
-                {   // ? IF PATHS ARE TRUE FOR EITHER, RENDER BUTTONS
-                    (path('issue') || path('/issues') || path('/dashboard')) && votingBtn()
-                }
-
-                { // ? IF USER ID IS EQUAL TO POST ID, RENDER LINK FOR EDIT
-                    user && user.userid === issue.user.userid && (<Link to={{
-                        pathname: "/edit-issue",
-                        state: {
-                            issue: issue
-                        }
-                    }}>Edit</Link>)
-                }
             </div>
 
             {
