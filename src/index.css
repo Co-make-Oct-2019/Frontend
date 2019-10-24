@@ -24,6 +24,7 @@ a:link,
 a:visited {
   text-decoration: none;
   border: none;
+  font-family:  Russo One, sans-serif;
   color: mediumseagreen;
 }
 

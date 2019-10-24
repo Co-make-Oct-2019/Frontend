@@ -7,15 +7,34 @@ import { startAuthenticate } from '../../Redux/actions/user';
 import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
 import Navigation from './Navigation';
-import ProfileCard from '../Profile/ProfileCard.js';
 import IssuesCard from '../Issues/IssuesCard.js';
-// * STYLE COMPONENT IMPORT
-import style from './StyleComponent';
 import axiosWithAuth from '../Utils/axiosWithAuth';
 
 // TODOS //Make sure sign-in is working and user Dashboard is displaying - done! //
 
 //Styling 
+
+const PageBox = styled.div`
+    padding: 30px;
+`
+
+const Navit = styled.div`   
+
+    background-color: white;
+    box-shadow: 3px 3px 3px black;
+    height: 100px;
+    border-radius: 10px;
+    `
+
+const IssueCard = styled.div`
+    background-color: black;
+    border-radius: 20px;
+    item-align: center;
+    padding: 40px;
+    color: white;
+    margin: 30px;
+`
+
 
 const DashBoard = (props) => {
     console.log(props);
@@ -51,38 +70,25 @@ const DashBoard = (props) => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-
         if (!!post.response_data === false) {
             props.startGetPostsFromCurrentLocation(!!token === true && token)
         }
     }, [])
 
-    console.log(props)
-
     return ( 
-
-        <style.section>
-
-            <style.navbar>
-                <Navigation/>
-                {/* <ProfileCard profile={profile}/> */}
-                </style.navbar>
-        
-            <div className='card'>
-
-
-
-            {props.post.response_data 
-            && props.post.response_data.map( (issue, key) => {
-
-                return (
-                    <div>
-                    <IssuesCard key={key} issue={issue} user={user} handleVote={handleVote} history={history} />
-                    </div>
-                )
-                })}
-            </div>
-       </style.section>
+        <PageBox>
+            <Navit> <Navigation/> </Navit>
+            <section>
+                {props.post.response_data 
+                && props.post.response_data.map( (issue, description,key) => {
+                    return (
+                        <IssueCard>
+                        <IssuesCard key={key} issue={issue} description={description} />
+                        </IssueCard>
+                    )
+                    })}
+            </section>
+       </PageBox>
     )
 }
 
