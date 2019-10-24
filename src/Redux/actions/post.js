@@ -53,7 +53,7 @@ export const startGetPosts = (inputData) => {
             .then(res => {
                 if (!!res === true) dispatch(get_post(res.data))
             })
-            .catch(err => console.log(err.response))
+            // .catch(err => console.log(err.response.status))
     }
 }
 
