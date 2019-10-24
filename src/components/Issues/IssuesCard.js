@@ -30,9 +30,9 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
 
     return (
         <style.card_div>
-            <div className={`issue-card__content`} onClick={(e) => path('/dashboard') || path('/issues') && forward(e)}>
+            <div className={`issue-card__content`}>
                 <article>
-                    <h3>{issue.title}</h3>
+                    <h3 onClick={(e) => path('/dashboard') || path('/issues') && forward(e)}>{issue.title}</h3>
 
                     <div className={`issue-card__issue`}>
 
