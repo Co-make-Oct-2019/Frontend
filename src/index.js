@@ -16,7 +16,7 @@ const history = createBrowserHistory();
 // * TOKEN
 const token = localStorage.getItem('token')
 
-// * CHECK CURRENT TOKEN IF EXPIRED.g
+// * CHECK CURRENT TOKEN IF EXPIRED.
 axiosWithAuth().get('/users/getuserinfo')
     .then(res => console.log(`APP ROUTER AXIOS CALL`, res))
     .catch(err => {

@@ -2,6 +2,11 @@
   * GLOBAL STYLES
 */
 
+/*  
+  * FONT IMPORTS 
+*/
+@import url('https://fonts.googleapis.com/css?family=Russo+One&display=swap');
+
 * {
   max-width: 100%;
   margin: 0;
@@ -19,7 +24,20 @@ a:link,
 a:visited {
   text-decoration: none;
   border: none;
-  color: black;
+  color: mediumseagreen;
+}
+
+button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Russo One", sans-serif;
 }
 
 /* 
