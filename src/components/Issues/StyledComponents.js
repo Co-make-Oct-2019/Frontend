@@ -28,6 +28,18 @@ const card_div = styled.div`
         cursor: pointer;
     }
 
+    & .issue-card__content {
+        & > article {
+            font-size: 1.5rem;
+
+            & .issue-card__issue > img {
+                // * STANDARD HEIGHT X WIDTH ON BACKEND                
+                max-height: 300px;
+                max-width: 300px;
+            }
+        }
+    }
+
     & .issue-comments__container {
 
         & > h3 {
