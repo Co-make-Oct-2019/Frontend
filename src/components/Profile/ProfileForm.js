@@ -68,11 +68,11 @@ function ProfileForm ({errors, touched}) {
     }
       
     const FormikProfileForm = withFormik({
-        mapPropsToValues({ name, email, image, location, description}) {
+        mapPropsToValues({ name, email, imageurl, location, description}) {
             return {
                 name: name || '',
                 email: email || '',
-                image: image || '',
+                imageurl: imageurl || '',
                 location: location || '',
                 description: description || '',
             };
@@ -84,7 +84,7 @@ function ProfileForm ({errors, touched}) {
                 .required('Please add your name.'),
             email: Yup.string()
                 .required('Co-maker profiles must contain a valid email address.'),
-            image: Yup.string()
+            imageurl: Yup.string()
                 .max(300, 'Image must be less than 300px'),
             location: Yup.string()
                 .required('Select a city to see Co-makes near you.'),
@@ -93,16 +93,11 @@ function ProfileForm ({errors, touched}) {
                 .required('Please tell us about yourself.')
         }),
             handleSubmit(values, {resetForm, setSubmitting}) {
-                resetForm();
-                setSubmitting();
-                // showSuccess('Refresh your page to see updated Profile')
+                
+               
                 console.log(values);
-
-              
-                const userData = {data: "Hello World!"};
-
                 axiosWithAuth() 
-                    .post('users/user/profile/edit', userData)
+                    .put('users/user/profile/edit', values)
                     .then(response => {
                         console.log(response.data);
                     })
@@ -110,6 +105,17 @@ function ProfileForm ({errors, touched}) {
                         console.log(err);
                     });
 
+                
+                setSubmitting();
+                resetForm();
+         
+                // showSuccess('Refresh your page to see updated Profile')
+                console.log(values);
+
+              
+                
+
+                
         }
 
 }) (ProfileForm);
