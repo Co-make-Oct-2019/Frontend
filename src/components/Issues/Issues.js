@@ -34,11 +34,12 @@ const Issues = (props) => {
         // * GRAB USER DATA (SELF)
         startAuthenticate()
 
-        console.log(searched)
+        // ! LOG DATA
+        // console.log(searched)
     }, [searched])
 
     // ! LOG DATA
-    console.log(`ISSUES COMPONENT`, user, location, match, history)
+    // console.log(`ISSUES COMPONENT`, user, location, match, history)
 
     // * HANDLEVOTE FOR VOTES
     const handleVote = (e, id) => {
@@ -57,12 +58,12 @@ const Issues = (props) => {
             .catch(err => console.log(err.response))
 
         // ! LOG DATA
-        console.log(
-            'ISSUES COMPONENT, HANDLE VOTE FUNCTION',
-            text,
-            voteType,
-            id
-        )
+        // console.log(
+        //     'ISSUES COMPONENT, HANDLE VOTE FUNCTION',
+        //     text,
+        //     voteType,
+        //     id
+        // )
     }
 
     // ? IF CHOSEN ID EXIST IN URL, FIND AND DISPLAY A ISSUE CARD === ISSUE_ID 
