@@ -53,7 +53,7 @@ export const startGetPosts = (inputData) => {
             .then(res => {
                 if (!!res === true) dispatch(get_post(res.data))
             })
-            // .catch(err => console.log(err.response.status))
+            .catch(err => console.log(err.response.status))
     }
 }
 
@@ -81,14 +81,13 @@ export const startUpdatePost = (inputData) => {
     }
 }
 
-export const startVoteUpdate = (inputData, type) => {
+export const startVoteUpdate = () => {
     return dispatch => {
 
         // ! LOG DATA
         // console.log(inputData, type)
 
         // * UPDATE CURRENT LIST OF DATA, WITH NEW OBJ FOR VOTING
-        // dispatch(update_postVote(inputData))
         dispatch(startGetPosts());
     }
 }
@@ -100,7 +99,6 @@ export const startVoteUpdateForDashboard = (inputData, type) => {
         // console.log(inputData, type)
 
         // * UPDATE CURRENT LIST OF DATA, WITH NEW OBJ FOR VOTING
-        // dispatch(update_postVote(inputData))
         dispatch(startGetPostsFromCurrentLocation());
     }
 }

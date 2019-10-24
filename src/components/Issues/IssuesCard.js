@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 // * COMPONENT IMPORTS
 import IssueComments from './IssueComments';
@@ -25,17 +26,23 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
                     <h3>{issue.title}</h3>
 
                     <div className={`issue-card__issue`}>
-                        <img src={`${issue.imageurl}`} alt={`${issue.description}`} />
-                        <p> Upvotes: {issue.count} </p>
-                        <p> Description: {issue.description} </p>
-                        <p> Location: {issue.location} </p>
-                        {/* <p> Id:{issue.userpostid} </p> */}
-                        {/* <p> Voted: {JSON.stringify(issue.voted)} </p> */}
-                        <p> Created by: {issue.user.username} </p>
 
-                        <span>{issue.createdDate}</span>
-                        <span>{issue.lastModifiedBy}</span>
-                        <span>{issue.lastModifiedDate}</span>
+                        {   // ? IMG DOES NOT CONTAIN A .COM, RANDOMIZE PLACEHOLDER IMG
+                            issue.imageurl &&
+                                !!issue.imageurl.includes('.com') ?
+                                <img src={`${issue.imageurl}`} alt={`${issue.description}`} /> :
+                                <img src={`https://picsum.photos/300/300`} alt={`${issue.description}`} />
+                        }
+
+                        <div className={`issue-card__info`}>
+                            <p>Description: {issue.description}</p>
+                            <p>Upvotes: {issue.count}</p>
+                            <p>Location: {issue.location}</p>
+                            <p>Created by: {issue.createdBy}</p>
+
+                            <span>Created By: {moment(issue.createdDate).add(10, 'days').calendar()}</span>
+                            <span>Last Updated: {moment(issue.lastModifiedDate).add(10, 'days').calendar()}</span>
+                        </div>
                     </div>
 
                 </article>
@@ -54,7 +61,7 @@ const IssuesCard = ({ issue, user, handleVote, history }) => {
             
             
 
-            { path('/issue/') &&
+            {path('/issue/') &&
                 <div className="issue-comments__container">
                     <h3>Comments: </h3>
 
