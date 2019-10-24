@@ -14,9 +14,12 @@ import Issues from '../components/Issues/Issues';
 import IssuesForm from '../components/Issues/IssuesForm';
 import Login from '../components/User/Login';
 import Profile from '../components/Profile/Profile';
+import FormikProfileForm from '../components/Profile/ProfileForm';
+import Escalate from '../components/DashBoard/Escalate';
 
 // * HISTORY OBJ
 const history = createBrowserHistory();
+
 
 const AppRouter = () => {
 
@@ -53,10 +56,13 @@ const AppRouter = () => {
                     <Route path="/dashboard" component={DashBoard} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/issues" component={Issues} />
+                    <Route path="/ProfileForm" component={FormikProfileForm} />
+                    <Route path="/Escalate" component={Escalate} />
                 </Switch>
             </>
         </Router>
     )
 }
+
 
 export default AppRouter

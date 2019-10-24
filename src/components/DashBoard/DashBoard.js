@@ -4,19 +4,20 @@ import React, { useState, useEffect } from 'react';
 import { startGetPosts } from '../../Redux/actions/post';
 import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
-import Navigation from '../Navigation';
-import ProfileCard from '../Profile/ProfileCard';
+import Navigation from './Navigation';
+import ProfileCard from '../Profile/ProfileCard.js';
 import IssuesCard from '../Issues/IssuesCard.js';
 // * STYLE COMPONENT IMPORT
 import style from './StyleComponent';
 
-// TODOS //
-//Make sure sign-in is working and user Dashboard is displaying
-//Stlyling 
+// TODOS //Make sure sign-in is working and user Dashboard is displaying - done! //
+
+//Styling 
 
 const DashBoard = (props) => {
 
     const [post, setPost] = useState([]);
+    const [profile, setProfile] = useState();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -26,21 +27,24 @@ const DashBoard = (props) => {
         }
     }, [])
 
-    console.log(props.post);
+    console.log(props)
 
     return ( 
 
         <style.section>
 
-            <Navigation/>
-            <ProfileCard/>
-            <div>
+            <style.navbar>
+                <Navigation/>
+                {/* <ProfileCard profile={profile}/> */}
+                </style.navbar>
+        
+            <div className='card'>
             {props.post.response_data 
             && props.post.response_data.map( (issue, key) => {
 
                 return (
                     <div>
-                    <IssuesCard key={key} issue={issue}/>
+                    <IssuesCard key={key} issue={issue} />
                     </div>
                 )
                 })}
