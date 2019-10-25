@@ -17,18 +17,20 @@ console.log(props);
 
         <div>  
           <style.Row>
+          <img src={`${ props.profile.imageurl }`} alt={`${props.profile.description}`}/>
               <style.Column>
               <h1>Co-Maker: </h1> 
               <h1>{props.profile.username}</h1>
               </style.Column>
-                <style.CardLogo src={Street}/>
-                <p>{props.profile.imageurl} </p> 
-                <img src={`${ props.profile.imageurl }`} alt={`${props.profile.description}`}/>
+                
+                {/* <p>{props.profile.imageurl} </p>  */}
+                
                   <style.Column>
               <h2> {props.profile.location} </h2>
               <h4>My Upvotes</h4>
-              <h3>{props.profile.reputation}</h3>
-              <p> Quote Me: {props.profile.description} </p>
+              <h5>{props.profile.reputation}</h5>
+              <h4> Quote Me: </h4>
+                <p>{props.profile.description} </p> 
               <Link to='/ProfileForm'>Edit Profile </Link>
               </style.Column>
           </style.Row>

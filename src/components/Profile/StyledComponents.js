@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { Field , Form } from 'formik';
 
 
 
 //* NAVIGATION STYLES
 
 const NavLogo = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 200px;
+  height: 200px;
+  border-raidus: 5px;
+  box-shadow: 3px 10px 3px grey;
+
   `
 
 const NavBox = styled.div`
@@ -42,7 +46,7 @@ const Title = styled.h3`
   color: #4d4d4d;
 `
 
-const FormDiv = styled.form`
+const FormDiv = styled(Form)`
   margin: 0 auto;
   margin-top: 50px;
   width: 300px;
@@ -52,7 +56,7 @@ const FormDiv = styled.form`
   flex-direction: column;
   align-items: center;
 `
-const Input = styled.input`
+const Input = styled(Field)`
   height: 30px;
   border: 1px solid lightgrey;
   border-raidus: 5px;
@@ -70,6 +74,7 @@ const Button = styled.input`
   background-color: #3cb371;
   color: white;
   width: 200px;
+  margin-bottom: 20px;
 `
 
 //* PROFILE CARD STYLES
@@ -81,7 +86,7 @@ const IssueCard = styled.div`
   padding: 40px;
   color: white;
   margin: 0 auto;
-  width: 200px;
+  width: 400px;
 `
 
 const CardLogo = styled.img`

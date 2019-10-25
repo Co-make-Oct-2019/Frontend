@@ -9,42 +9,8 @@ import Navigation from './Navigation';
 import IssuesCard from '../Issues/IssuesCard.js';
 // * STYLE IMPORTS
 import styled from 'styled-components';
+import style from './StyleComponent';
 
-
-
-
-const PageBox = styled.div`
-   padding: 80px;
-`
-const IssueBox = styled.div`
-   display: flex;
-   flex-wrap: wrap;
-   `
-const Navit = styled.div`
-   background-color: white;
-   box-shadow: 3px 3px 3px black;
-   height: 50px;
-   border-radius: 10px;
-   `
-const Right = styled.div`
-   display: flex;
-   margin-left: 120px;
-   `
-const IssueCard = styled.div`
-   background-color: black;
-   border-radius: 20px;
-   align: center;
-   padding: 40px;
-   color: white;
-   margin: 20px;
-   width: 100px;
-`
-const Row = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin: 30px;
-    borer: 1px solid black;
-    `
     
 
 
@@ -88,27 +54,26 @@ const DashBoard = (props) => {
     }, [])
 
     return ( 
-        <PageBox>
+        <style.PageBox>
             
-            <Navit> 
-                <Row>
-                <h1>DashBoard</h1>
-                <Right>
-                <Navigation/>
-                </Right>
-                </Row>
-             </Navit>
-            <IssueBox>
+            <style.Navit>
+        <style.Row>
+           <style.StyledLink to = '/profile' >Profile</style.StyledLink>
+           <style.StyledLink to = '/tools' >Tools</style.StyledLink>
+           <style.StyledLink to = '/new-issue'>Post an Issue</style.StyledLink>
+        </style.Row>
+        </style.Navit>
+            <style.IssueBox>
                 {props.post.response_data 
                 && props.post.response_data.map( (issue, description,key) => {
                     return (
-                        <IssueCard>
+                        <style.IssueCard>
                         <IssuesCard key={key} issue={issue} />
-                        </IssueCard>
+                        </style.IssueCard>
                     )
                     })}
-            </IssueBox>
-       </PageBox>
+            </style.IssueBox>
+       </style.PageBox>
     )
 }
         const mapStateToProps = (state) => {

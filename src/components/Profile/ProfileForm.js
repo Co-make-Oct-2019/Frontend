@@ -37,34 +37,25 @@ function ProfileForm ({errors, touched}) {
         <style.Row>
           <style.FormDiv>
           <h1>Update Profile</h1>
-                <style.Column>
-                    <style.Title>Name
-                        <style.Input name='name' type='text' placeholder='name'/>
-                        {touched.name && errors.name &&<style.Err>{errors.name}</style.Err>}
-                    </style.Title>
-                </style.Column>
+                
                 <style.Column>
                     <style.Title>Add an Image
                         <style.Input name='imageurl' type='url' placeholder='photo'/>
                         {touched.imageurl && errors.imageurl &&<style.Err>{errors.imageurl}</style.Err>}
                     </style.Title>
                 </style.Column>
-                <style.Column>
-                   <style.Title>Email Address
-                        <style.Input validate={validate} name='email' type='email' placeholder='email address'/>
-                        {touched.email && errors.email &&<style.Err>{errors.email}</style.Err>}
-                    </style.Title>
-                </style.Column>
-                <style.Column>
+               
+                <style.Column> 
                     <style.Title>Quote Me:
                         <style.Input name='description' type='text' placeholder='Pleased to meet you'/>
                         {touched.description && errors.description && 
                     <style.Err>{errors.description}</style.Err>}
                     </style.Title>
                 </style.Column>
+
                 <style.Column>
                         <style.Title>
-                        <Field component='select' name= 'location' placeholder='What city are you in?'>
+                        <Field component='select' name= 'mylocation' placeholder='What city are you in?'>
                             <option value=''>Select Your City</option>
                             <option value='Boston'>Boston</option>
                             <option value='Chicago'>Chicago</option>
@@ -78,43 +69,53 @@ function ProfileForm ({errors, touched}) {
                 <style.Button type='submit'></style.Button>
                 <Navigation/>
             </style.FormDiv>
+            
             <style.Logo src= {comake}></style.Logo>
             </style.Row>
+            
             </>
         )
     }
       
     const FormikProfileForm = withFormik({
-        mapPropsToValues({ name, email, imageurl, location, description}) {
+        mapPropsToValues({  imageurl, mylocation, description}) {
+            console.log(description);
             return {
-                name: name || '',
-                email: email || '',
+               
                 imageurl: imageurl || '',
-                location: location || '',
+                mylocation: mylocation || '',
                 description: description || '',
             };
         },
 
         validationSchema: Yup.object().shape ({
-            name: Yup.string()
-                .min(4, 'Name must be at least 4 characters')
-                .required('Please add your name.'),
-            email: Yup.string()
-                .email('Email not valid')
-                .required('Co-maker profiles must contain a valid email address.'),
             imageurl: Yup.string()
                 .max(300, 'Image must be less than 300px'),
-            location: Yup.string()
+            mylocation: Yup.string()
                 .required('Select a city to see Co-makes near you.'),
             description: Yup.string()
                 .max(25)
                 .required('Please tell us about yourself.')
         }),
             handleSubmit(values, {resetForm, setErrors, setSubmitting}) {
+                console.log(values);
+                let obj = {};
+
+                if (values.description !="") {
+                    obj.description = values.description;
+                } 
+                if (values.imageurl !="") {
+                    obj.imageurl = values.imageurl;
+                } 
+                if (values.mylocation !="") {
+                    obj.location = values.mylocation;
+                } 
+             
 
                 console.log(values);
+                console.log(obj);
                 axiosWithAuth() 
-                    .put('users/user/profile/edit', values)
+                    .put('users/user/profile/edit', obj)
                     .then(response => {
                         console.log(response.data);
                     })

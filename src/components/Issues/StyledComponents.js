@@ -35,8 +35,8 @@ const card_div = styled.div`
 
             & .issue-card__issue > img {
                 // * STANDARD HEIGHT X WIDTH ON BACKEND                
-                max-height: 300px;
-                max-width: 300px;
+                max-height: 200px;
+                max-width: 200px;
             }
 
             & .issue-card__issue {
