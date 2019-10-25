@@ -20,15 +20,14 @@ const NavBox = styled.div`
   color: #3CB371;
   font-family: Russo-One;
   font-size: 20px;
-  margin: 20px;
+  margin: 10px;
 `;
 const Navigation = (props) => {
   return (
     <NavBox>
-            
           <StyledLink to="/profile">Profile</StyledLink>
           <StyledLink to="/tools">Tools</StyledLink>
-     <img src= {comake}/>
+          
     </NavBox>
   );
 };

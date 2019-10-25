@@ -3,6 +3,9 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axiosWithAuth from '../Utils/axiosWithAuth';
 import Navigation from '../DashBoard/Navigation';
+import comake from '../images/comake.png';
+import styled from 'styled-components';
+
 
 
 // TODOS // 
@@ -12,6 +15,29 @@ import Navigation from '../DashBoard/Navigation';
 // Return a success message for your form
 // Return to the Dashboard after submitting the form
 // Styling
+
+
+  const Logo = styled.img`
+  width: 500px;
+  height: 500px;
+  `
+  const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  borer: 1px solid black;
+  background-color: whitesmoke;
+  padding: 20px;
+  `
+  const FormDiv = styled.div`
+    margin: 0 auto;
+    width: 300px;
+    height: 500px;
+    .div {
+        height: 50px;
+    }
+    `
+
 
 function ProfileForm ({errors, touched}) {
 
@@ -24,11 +50,10 @@ function ProfileForm ({errors, touched}) {
       };
 
     return(
-
-        <div>
-        <Navigation/>
-      
-            <Form>
+        <>
+        
+        <Row>
+            <FormDiv>
                 <div>
                     <label>Name
                         <Field name='name' type='text' placeholder='name'/>
@@ -62,8 +87,11 @@ function ProfileForm ({errors, touched}) {
                 </div>
 
                 <input type='submit'/>
-            </Form>
-            </div>
+                <Navigation/>
+            </FormDiv>
+            <Logo src= {comake}></Logo>
+            </Row>
+            </>
         )
     }
       
@@ -111,11 +139,6 @@ function ProfileForm ({errors, touched}) {
          
                 // showSuccess('Refresh your page to see updated Profile')
                 console.log(values);
-
-              
-                
-
-                
         }
 
 }) (ProfileForm);

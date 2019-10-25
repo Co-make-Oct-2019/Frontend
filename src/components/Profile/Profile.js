@@ -5,9 +5,9 @@ import { Link , Route , NavLink } from 'react-router-dom';
 import style from './StyledComponents';
 // * APP COMPONENT IMPORT
 import ProfileCard from './ProfileCard';
-import FormikProfileForm from './ProfileForm';
 import axiosWithAuth from '../Utils/axiosWithAuth';
 import styled from 'styled-components';
+import comake from '../images/comake.png';
 
 
 // TODOS //  *component-header *NavLink *h2 *profile-card *button *main-section *info-section
@@ -15,28 +15,30 @@ import styled from 'styled-components';
 // Add classNames to elements
 // Styling
 
-    const Navit = styled.div`   
+    const Container = styled.div`
+        margin: 0;
+        padding-top: 30px;
+        background-color: whitesmoke;
+        `
+    const Navit = styled.div`  
         margin: 0 auto;
+        margin-top: 50px;
         background-color: white;
         box-shadow: 3px 10px 3px grey;
-        width: 90%;
-        border-radius: 10px;
-        padding: 20px;
+        width: 70%;
+        border-radius: 5px;
+        padding: 15px;
         `
+    const Right = styled.div`
+        text-align: right;
+        `    
     const StyledLink = styled(Link)`
         color: #3CB371;
         font-family: Russo-One;
         font-size: 20px;
         margin: 15px;
         `;
-
-    const Button = styled.button`
-        padding: 10px;
-        color: white;
-        background-color: #3CB371;
-        border-radius: 5px;
-        margin: 10px;
-        `
+   
 
     const Row = styled.div`
         display: flex;
@@ -44,7 +46,8 @@ import styled from 'styled-components';
         borer: 1px solid black;
         `
 
-
+   
+     
 const Profile = (user) => {
     const [profile, setProfile] = useState();
 
@@ -62,33 +65,19 @@ const Profile = (user) => {
     
     return (
         <>
-        <Navit className='profile-card'>
-        
-        <h1>Profile </h1>
+      
+        <Container>
         <Navit>
         <Row>
-           <StyledLink to = '/' >DashBoard</StyledLink>
+           <StyledLink to = '/dashboard' >DashBoard</StyledLink>
            <StyledLink to = '/tools' >Tools</StyledLink>
-           <Button>
-                <Link to='/ProfileForm'> Edit Profile </Link>
-            </Button>
-            
-            <Button>
-                <Link to = '/new-issue'>Post an Issue</Link>
-            </Button>
+           <StyledLink to = '/new-issue'>Post an Issue</StyledLink>
         </Row>
         </Navit>
-
-        
-
-        
+        <Navit className='profile-card'>
             {profile && <ProfileCard profile={profile}/>}
-            <Row>
-            
-            </Row>
-            
         </Navit>
-
+        </Container>
             
         </>
     )

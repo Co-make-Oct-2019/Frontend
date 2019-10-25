@@ -28,6 +28,32 @@ const card_div = styled.div`
         cursor: pointer;
     }
 
+    & .issue-card__content {
+
+        & > article {
+            font-size: 1.5rem;
+
+            & .issue-card__issue > img {
+                // * STANDARD HEIGHT X WIDTH ON BACKEND                
+                max-height: 300px;
+                max-width: 300px;
+            }
+
+            & .issue-card__issue {
+                display: flex;
+                flex-flow: row nowrap;
+
+                & .issue-card__info {
+                    display: flex;
+                    flex-flow: column nowrap;
+
+                    max-width: 100%;
+                    padding-left: 1rem;
+                }
+            }
+        }
+    }
+
     & .issue-comments__container {
 
         & > h3 {
@@ -85,15 +111,51 @@ const card_div = styled.div`
 `
 
 const form = styled.form`
-    border: 1px solid blue;
+    margin: 0 auto;
+    margin-top: 5rem;
+    height: 5rem;
+    max-width: 50%;
+    background-color: #54565A;
+    border-radius: 0.3rem;
+    border-bottom: 1.5px solid mediumseagreen;
+    border-left: 1.3px solid mediumseagreen;
 
-    & > button:hover {
-        cursor: pointer;
-    }
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 
     & > input {
         background-color: lightgray;
         margin: 0 1rem;
+        height: 1.5rem;
+        border-radius: 0.3rem;
+    }
+
+    & > input::placeholder {
+        color: black;
+        padding-left: 1rem;
+    }
+
+    & .issue-form__btn {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        width: 25%;
+
+        & > button:hover {
+            cursor: pointer;
+        }
+
+        & > button {
+            height: 1.5rem;
+            width: 75%;
+            margin: 0 0.5rem;
+            background-color: mediumseagreen;
+            border-radius: 0.3rem;
+            border-bottom: 0.6px solid #D3D3D3;
+            border-left: 0.5px solid #D3D3D3;
+        }
     }
 `
 
