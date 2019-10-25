@@ -5,6 +5,7 @@ import axiosWithAuth from '../Utils/axiosWithAuth';
 import Navigation from '../DashBoard/Navigation';
 import comake from '../images/comake.png';
 import styled from 'styled-components';
+import style from './StyledComponents';
 
 
 
@@ -17,26 +18,7 @@ import styled from 'styled-components';
 // Styling
 
 
-  const Logo = styled.img`
-  width: 500px;
-  height: 500px;
-  `
-  const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 30px;
-  borer: 1px solid black;
-  background-color: whitesmoke;
-  padding: 20px;
-  `
-  const FormDiv = styled.div`
-    margin: 0 auto;
-    width: 300px;
-    height: 500px;
-    .div {
-        height: 50px;
-    }
-    `
+ 
 
 
 function ProfileForm ({errors, touched}) {
@@ -52,22 +34,36 @@ function ProfileForm ({errors, touched}) {
     return(
         <>
         
-        <Row>
-            <FormDiv>
-                <div>
-                    <label>Name
-                        <Field name='name' type='text' placeholder='name'/>
-                        {touched.name && errors.name &&<p>{errors.name}</p>}
-                    </label>
-                </div>
-                <div>
-                    <label>Email Address
-                        <Field validate={validate} name='email' type='email' placeholder='email address'/>
-                        {touched.email && errors.email &&<p>{errors.email}</p>}
-                    </label>
-                </div>
-                <div>
-                        <label>
+        <style.Row>
+          <style.FormDiv>
+          <h1>Update Profile</h1>
+                <style.Column>
+                    <style.Title>Name
+                        <style.Input name='name' type='text' placeholder='name'/>
+                        {touched.name && errors.name &&<style.Err>{errors.name}</style.Err>}
+                    </style.Title>
+                </style.Column>
+                <style.Column>
+                    <style.Title>Add an Image
+                        <style.Input name='imageurl' type='url' placeholder='photo'/>
+                        {touched.imageurl && errors.imageurl &&<style.Err>{errors.imageurl}</style.Err>}
+                    </style.Title>
+                </style.Column>
+                <style.Column>
+                   <style.Title>Email Address
+                        <style.Input validate={validate} name='email' type='email' placeholder='email address'/>
+                        {touched.email && errors.email &&<style.Err>{errors.email}</style.Err>}
+                    </style.Title>
+                </style.Column>
+                <style.Column>
+                    <style.Title>Quote Me:
+                        <style.Input name='description' type='text' placeholder='Pleased to meet you'/>
+                        {touched.description && errors.description && 
+                    <style.Err>{errors.description}</style.Err>}
+                    </style.Title>
+                </style.Column>
+                <style.Column>
+                        <style.Title>
                         <Field component='select' name= 'location' placeholder='What city are you in?'>
                             <option value=''>Select Your City</option>
                             <option value='Boston'>Boston</option>
@@ -75,22 +71,15 @@ function ProfileForm ({errors, touched}) {
                             <option value='Miami'>Miami</option>
                             <option value='Portland'>Portland</option>
                         </Field>
-                        <p>{errors.location}</p>
-                        </label>
-                </div>
-                <div>
-                    <label>Introduction
-                        <Field name='description' type='text' placeholder='Pleased to meet you'/>
-                        {touched.description && errors.description && 
-                    <p>{errors.description}</p>}
-                    </label>
-                </div>
+                        <style.Err>{errors.location}</style.Err>
+                        </style.Title>
+                </style.Column>
 
-                <input type='submit'/>
+                <style.Button type='submit'></style.Button>
                 <Navigation/>
-            </FormDiv>
-            <Logo src= {comake}></Logo>
-            </Row>
+            </style.FormDiv>
+            <style.Logo src= {comake}></style.Logo>
+            </style.Row>
             </>
         )
     }
@@ -111,6 +100,7 @@ function ProfileForm ({errors, touched}) {
                 .min(4, 'Name must be at least 4 characters')
                 .required('Please add your name.'),
             email: Yup.string()
+                .email('Email not valid')
                 .required('Co-maker profiles must contain a valid email address.'),
             imageurl: Yup.string()
                 .max(300, 'Image must be less than 300px'),
@@ -120,9 +110,8 @@ function ProfileForm ({errors, touched}) {
                 .max(25)
                 .required('Please tell us about yourself.')
         }),
-            handleSubmit(values, {resetForm, setSubmitting}) {
-                
-               
+            handleSubmit(values, {resetForm, setErrors, setSubmitting}) {
+
                 console.log(values);
                 axiosWithAuth() 
                     .put('users/user/profile/edit', values)
@@ -132,8 +121,6 @@ function ProfileForm ({errors, touched}) {
                     .catch(err => {
                         console.log(err);
                     });
-
-                
                 setSubmitting();
                 resetForm();
          

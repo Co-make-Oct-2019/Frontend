@@ -1,76 +1,48 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 // * STYLED COMPONENT IMPORT
 import styled from 'styled-components';
 // * APP COMPONENT IMPORT
 import IssuesCard from '../Issues/IssuesCard.js';
 import comake from '../images/comake.png';
-import { Link } from 'react-router-dom';
+import style from './StyledComponents';
+import Street from '../images/Street.jpeg';
 
 
-const IssueCard = styled.div`
-        background-color: black;
-        border-radius: 20px;
-        align: center;
-        padding: 40px;
-        color: white;
-        margin: 0 auto;
-        width: 600px;
-     `
-
-const Logo = styled.img`
-  width: 50px;
-  height: 50px;
-  `
-
- const Row = styled.div`
-            display: flex;
-            flex-direction: row;
-            margin: 30px;
-            borer: 1px solid black;
-            background-color: whitesmoke;
-            padding: 20px;
-            `
-            const Column = styled.div`
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-            margin-left: 20px;
-            `
 
 const ProfileCard = (props) => {
 console.log(props);
     return (
 
         <div>  
-          <Row>
-              <Column>
+          <style.Row>
+              <style.Column>
               <h1>Co-Maker: </h1> 
               <h1>{props.profile.username}</h1>
-              </Column>
+              </style.Column>
+                <style.CardLogo src={Street}/>
                 <p>{props.profile.imageurl} </p> 
                 <img src={`${ props.profile.imageurl }`} alt={`${props.profile.description}`}/>
-                  <Column>
+                  <style.Column>
               <h2> {props.profile.location} </h2>
               <h4>My Upvotes</h4>
               <h3>{props.profile.reputation}</h3>
               <p> Quote Me: {props.profile.description} </p>
               <Link to='/ProfileForm'>Edit Profile </Link>
-              </Column>
-            
-           
-        
-          </Row>
+              </style.Column>
+          </style.Row>
           
             <div>
               {props.profile.userposts.map(item => {
                 return(
                   <>
                   
-                <IssueCard> 
-                  <Logo src= {comake}></Logo>
+                <style.IssueCard> 
+                  <style.CardLogo src= {comake}></style.CardLogo>
                   <h2>My Posts</h2> 
                   <IssuesCard key={item.userpostid} issue={item}  />
-                </IssueCard>
+                </style.IssueCard>
                 </>
                 )
                 })}
