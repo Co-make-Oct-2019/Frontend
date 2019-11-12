@@ -1,43 +1,17 @@
-
 // * HOOKS
 import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../Utils/axiosWithAuth';
 import { startGetPostsFromCurrentLocation, startVoteUpdateForDashboard } from '../../Redux/actions/post';
 import { startAuthenticate } from '../../Redux/actions/user';
-
 import { connect } from 'react-redux';
 // * APP COMPONENT IMPORT
 import Navigation from './Navigation';
 import IssuesCard from '../Issues/IssuesCard.js';
-
 // * STYLE IMPORTS
-import styled from 'styled-imports';
+import styled from 'styled-components';
+import style from './StyleComponent';
 
-import axiosWithAuth from '../Utils/axiosWithAuth';
-
-// TODOS //Make sure sign-in is working and user Dashboard is displaying - done! //
-
-//Styling 
-
-const PageBox = styled.div`
-    padding: 30px;
-`
-
-const Navit = styled.div`   
-
-    background-color: white;
-    box-shadow: 3px 3px 3px black;
-    height: 100px;
-    border-radius: 10px;
-    `
-
-const IssueCard = styled.div`
-    background-color: black;
-    border-radius: 20px;
-    item-align: center;
-    padding: 40px;
-    color: white;
-    margin: 30px;
-`
+    
 
 
 const DashBoard = (props) => {
@@ -80,22 +54,28 @@ const DashBoard = (props) => {
     }, [])
 
     return ( 
-        <PageBox>
-            <Navit> <Navigation/> </Navit>
-            <section>
+        <style.PageBox>
+            
+            <style.Navit>
+        <style.Row>
+           <style.StyledLink to = '/profile' >Profile</style.StyledLink>
+           <style.StyledLink to = '/tools' >Tools</style.StyledLink>
+           <style.StyledLink to = '/new-issue'>Post an Issue</style.StyledLink>
+        </style.Row>
+        </style.Navit>
+            <style.IssueBox>
                 {props.post.response_data 
                 && props.post.response_data.map( (issue, description,key) => {
                     return (
-                        <IssueCard>
-                        <IssuesCard key={key} issue={issue} description={description} />
-                        </IssueCard>
+                        <style.IssueCard>
+                        <IssuesCard key={key} issue={issue} />
+                        </style.IssueCard>
                     )
                     })}
-            </section>
-       </PageBox>
+            </style.IssueBox>
+       </style.PageBox>
     )
 }
-
         const mapStateToProps = (state) => {
             return {
                 post: state.post,
